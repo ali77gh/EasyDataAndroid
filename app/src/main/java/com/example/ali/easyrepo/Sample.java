@@ -1,6 +1,7 @@
 package com.example.ali.easyrepo;
 
 import com.example.easyrepolib.BitmapRepo;
+import com.example.easyrepolib.GRepo;
 
 /**
  * Created by ali on 8/20/18.
@@ -8,8 +9,20 @@ import com.example.easyrepolib.BitmapRepo;
 
 public class Sample {
 
-    private void BitmapTest(){
+    private void BitmapTest() {
 
+        BitmapRepo bitmapRepo = new BitmapRepo(activity, GRepo.Mode.LOCAL);
+        //modes -> LOCAL , EXTERNAL , CACHE
+
+        //Save
+        bitmapRepo.Save("fileName", myBitmap);
+
+        //Load
+        if (bitmapRepo.CheckExist("fileName"))
+            myBitmap = bitmapRepo.Load("fileName");
+
+        //remove
+        bitmapRepo.Remove("fileName");
 
     }
 }

@@ -12,11 +12,11 @@ import java.io.IOException;
  * Created by ali on 8/20/18.
  */
 
-public class ByteRepo extends GlobalRepo {
+public class ByteRepo extends GRepo {
 
     /**
      * @param context context
-     * @param mode    one of GlobalRepo.LOCAL , GlobalRepo.CACHE , GlobalRepo.EXTERNAL
+     * @param mode    one of GRepo.LOCAL , GRepo.CACHE , GRepo.EXTERNAL
      */
     public ByteRepo(Context context, Mode mode) {
         super(context, mode);

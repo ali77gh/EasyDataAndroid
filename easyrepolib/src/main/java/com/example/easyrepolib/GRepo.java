@@ -8,7 +8,7 @@ import java.io.File;
  * Created by ali on 8/20/18.
  */
 
-abstract class GlobalRepo {
+public abstract class GRepo {
 
     File ModeRootPath;
 
@@ -20,9 +20,9 @@ abstract class GlobalRepo {
 
     /**
      * @param context context
-     * @param mode    one of GlobalRepo.LOCAL , GlobalRepo.CACHE , GlobalRepo.EXTERNAL
+     * @param mode    one of GRepo.LOCAL , GRepo.CACHE , GRepo.EXTERNAL
      */
-    public GlobalRepo(Context context, Mode mode) {
+    public GRepo(Context context, Mode mode) {
         switch (mode) {
             case LOCAL:
                 ModeRootPath = context.getFilesDir();

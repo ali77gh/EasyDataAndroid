@@ -12,12 +12,12 @@ import java.io.IOException;
  * Created by ali on 8/20/18.
  */
 
-public class BitmapRepo extends GlobalRepo {
+public class BitmapRepo extends GRepo {
 
 
     /**
      * @param context context
-     * @param mode    one of GlobalRepo.LOCAL , GlobalRepo.CACHE , GlobalRepo.EXTERNAL
+     * @param mode    one of GRepo.LOCAL , GRepo.CACHE , GRepo.EXTERNAL
      */
     public BitmapRepo(Context context, Mode mode) {
         super(context, mode);
