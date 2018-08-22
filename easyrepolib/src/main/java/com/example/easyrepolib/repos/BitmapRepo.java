@@ -1,8 +1,10 @@
-package com.example.easyrepolib;
+package com.example.easyrepolib.repos;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import com.example.easyrepolib.abstracts.GRepo;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,6 +16,7 @@ import java.io.IOException;
 
 public class BitmapRepo extends GRepo {
 
+    private String postFix = ".png";
 
     /**
      * @param context context
@@ -28,7 +31,7 @@ public class BitmapRepo extends GRepo {
      * @return return null if file not exist & on exception (checkout logs)
      **/
     public Bitmap Load(String fileName) {
-        fileName = ModeRootPath + "/" + fileName;
+        fileName = ModeRootPath + "/" + fileName + postFix;
         File f = new File(fileName);
         if (!f.exists()) {
             return null;
@@ -38,7 +41,7 @@ public class BitmapRepo extends GRepo {
 
     /**
      * @return true if file exist
-     * */
+     */
     public boolean CheckExist(String fileName) {
         return Load(fileName) != null;
     }
@@ -48,7 +51,7 @@ public class BitmapRepo extends GRepo {
      * @param bmp      bitmap you want to write on file
      **/
     public void Save(String filename, Bitmap bmp) {
-        filename = ModeRootPath + "/" + filename;
+        filename = ModeRootPath + "/" + filename + postFix;
         try {
             FileOutputStream out = new FileOutputStream(filename);
             bmp.compress(Bitmap.CompressFormat.PNG, 100, out);

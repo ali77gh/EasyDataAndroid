@@ -1,7 +1,9 @@
-package com.example.easyrepolib;
+package com.example.easyrepolib.repos;
 
 import android.content.Context;
 import android.util.Log;
+
+import com.example.easyrepolib.abstracts.GRepo;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,6 +20,8 @@ public class StringRepo extends GRepo {
 
 
     private Context _context;
+    private String postFix = ".txt";
+
     /**
      * @param context context
      * @param mode    one of GRepo.LOCAL , GRepo.CACHE , GRepo.EXTERNAL
@@ -27,12 +31,18 @@ public class StringRepo extends GRepo {
         _context = context;
     }
 
+    public StringRepo(Context context, Mode mode,String postFix) {
+        super(context, mode);
+        _context = context;
+        this.postFix = postFix;
+    }
+
     /**
      * @return null if not exist
-     * */
+     */
     public String Load(String fileName) {
 
-        fileName = ModeRootPath + "/" + fileName;
+        fileName = ModeRootPath + "/" + fileName + postFix;
 
         try {
             InputStream inputStream = _context.openFileInput(fileName);
@@ -65,7 +75,7 @@ public class StringRepo extends GRepo {
 
     public void Save(String data, String fileName) {
 
-        fileName = ModeRootPath + "/" + fileName;
+        fileName = ModeRootPath + "/" + fileName + postFix;
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(_context.openFileOutput(fileName, Context.MODE_PRIVATE));
             outputStreamWriter.write(data);

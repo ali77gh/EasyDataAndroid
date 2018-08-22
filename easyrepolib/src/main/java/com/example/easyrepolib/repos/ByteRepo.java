@@ -1,6 +1,8 @@
-package com.example.easyrepolib;
+package com.example.easyrepolib.repos;
 
 import android.content.Context;
+
+import com.example.easyrepolib.abstracts.GRepo;
 
 import java.io.BufferedInputStream;
 import java.io.File;

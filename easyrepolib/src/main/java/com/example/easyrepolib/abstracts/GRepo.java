@@ -1,4 +1,4 @@
-package com.example.easyrepolib;
+package com.example.easyrepolib.abstracts;
 
 import android.content.Context;
 
@@ -10,7 +10,7 @@ import java.io.File;
 
 public abstract class GRepo {
 
-    File ModeRootPath;
+    protected File ModeRootPath;
 
     public enum Mode {
         LOCAL,
