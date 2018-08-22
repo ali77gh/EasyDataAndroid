@@ -21,7 +21,7 @@ same for ByteRepo,StringRepo,ObjectRepo
 # TODO:
 1. <s>Bitmap Repo</s>
 2. <s>Byte Repo</s>
-3. <s>String Repo<s>
+3. <s>String Repo</s>
 4. Object Repo
 5. add GetAll , RemoveAll
 6. Test all
