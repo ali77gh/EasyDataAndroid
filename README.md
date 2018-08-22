@@ -31,3 +31,8 @@ same for ByteRepo,StringRepo,ObjectRepo
 
 # Thanks
 [stackoverflow.com](https://stackoverflow.com/)
+
+# LICENCE
+[MIT](https://github.com/ali77gh/EasyDataAndroid/blob/master/LICENSE)
+
+
