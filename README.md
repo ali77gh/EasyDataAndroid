@@ -33,6 +33,6 @@ same for ByteRepo,StringRepo,ObjectRepo
 [stackoverflow.com](https://stackoverflow.com/)
 
 # LICENCE
-[LICENSE](https://github.com/ali77gh/EasyDataAndroid/blob/master/LICENSE)
+[MIT](https://github.com/ali77gh/EasyDataAndroid/blob/master/LICENSE)
 
 
