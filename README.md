@@ -1,8 +1,14 @@
 # EasyDataAndroid
 an android lib that make Save , load , Remove easy for you on EXTERNAL,INTERNAL,CACHE dirs 
-for bitmap , string , byteArray , Object
+for bitmap , string , byteArray , Object,...
 
 # How To Use
+for EXTERNAL mode add following permission to manifest.xml and also request for permission for api > 21
+~~~xml
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+~~~
+then
 ~~~java
 BitmapRepo bitmapRepo = new BitmapRepo(activity, GRepo.Mode.LOCAL);
 //modes -> LOCAL , EXTERNAL , CACHE
@@ -16,13 +22,13 @@ bitmapRepo.Save("fileName", myBitmap);
  //remove
  bitmapRepo.Remove("fileName");
 ~~~
-same for ByteRepo,StringRepo,ObjectRepo
+see [wiki](https://github.com/ali77gh/EasyDataAndroid/wiki) for more samples
 
 # TODO:
 1. <s>Bitmap Repo</s>
 2. <s>Byte Repo</s>
 3. <s>String Repo</s>
-4. Object Repo
+4. <s>Object Repo</s>
 5. add GetAll , RemoveAll
 6. Test all
 7. key-value object repo using sqlite
@@ -34,5 +40,3 @@ same for ByteRepo,StringRepo,ObjectRepo
 
 # LICENCE
 [MIT](https://github.com/ali77gh/EasyDataAndroid/blob/master/LICENSE)
-
-
