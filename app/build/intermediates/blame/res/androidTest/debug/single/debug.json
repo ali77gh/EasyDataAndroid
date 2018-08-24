@@ -8,12 +8,12 @@
         "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e2d4ddd40ecd3087df52ac7e7809ae47/res/layout/support_simple_spinner_dropdown_item.xml"
     },
     {
-        "merged": "/home/ali/hooshkar/lastFennec/EasyRepo/app/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
-        "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e2d4ddd40ecd3087df52ac7e7809ae47/res/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/home/ali/hooshkar/lastFennec/EasyRepo/app/build/intermediates/res/merged/androidTest/debug/color-v23_abc_btn_colored_text_material.xml.flat",
         "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e2d4ddd40ecd3087df52ac7e7809ae47/res/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/home/ali/hooshkar/lastFennec/EasyRepo/app/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
+        "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e2d4ddd40ecd3087df52ac7e7809ae47/res/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
     },
     {
         "merged": "/home/ali/hooshkar/lastFennec/EasyRepo/app/build/intermediates/res/merged/androidTest/debug/drawable_abc_switch_thumb_material.xml.flat",

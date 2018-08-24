@@ -61,4 +61,10 @@ public class BitmapRepo extends GRepo {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+    public void Remove(String filename) {
+        filename = ModeRootPath + "/" + filename + postFix;
+        File f = new File(filename);
+        if (f.exists()) f.delete();
+    }
 }

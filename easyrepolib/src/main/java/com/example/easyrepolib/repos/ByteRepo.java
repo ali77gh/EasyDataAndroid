@@ -24,7 +24,7 @@ public class ByteRepo extends GRepo {
         super(context, mode);
     }
 
-    public void Save(byte[] bytes, String filename) {
+    public void Save(String filename, byte[] bytes) {
         filename = ModeRootPath + "/" + filename;
         try {
             FileOutputStream out = new FileOutputStream(filename);
@@ -57,5 +57,11 @@ public class ByteRepo extends GRepo {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public void Remove(String filename) {
+        filename = ModeRootPath + "/" + filename;
+        File f = new File(filename);
+        if (f.exists()) f.delete();
     }
 }

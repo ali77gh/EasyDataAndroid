@@ -6,7 +6,10 @@ import android.util.Log;
 import com.example.easyrepolib.abstracts.GRepo;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -31,7 +34,7 @@ public class StringRepo extends GRepo {
         _context = context;
     }
 
-    public StringRepo(Context context, Mode mode,String postFix) {
+    public StringRepo(Context context, Mode mode, String postFix) {
         super(context, mode);
         _context = context;
         this.postFix = postFix;
@@ -45,7 +48,7 @@ public class StringRepo extends GRepo {
         fileName = ModeRootPath + "/" + fileName + postFix;
 
         try {
-            InputStream inputStream = _context.openFileInput(fileName);
+            FileInputStream inputStream = new FileInputStream(new File(fileName));
 
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -73,16 +76,22 @@ public class StringRepo extends GRepo {
         return Load(fileName) != null;
     }
 
-    public void Save(String data, String fileName) {
+    public void Save(String fileName, String data) {
 
         fileName = ModeRootPath + "/" + fileName + postFix;
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(_context.openFileOutput(fileName, Context.MODE_PRIVATE));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(new File(fileName)));
             outputStreamWriter.write(data);
             outputStreamWriter.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
+    }
+
+    public void Remove(String filename) {
+        filename = ModeRootPath + "/" + filename + postFix;
+        File f = new File(filename);
+        if (f.exists()) f.delete();
     }
 
 }

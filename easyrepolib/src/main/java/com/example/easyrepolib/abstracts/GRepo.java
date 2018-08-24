@@ -4,6 +4,9 @@ import android.content.Context;
 
 import java.io.File;
 
+import static android.os.Environment.getDataDirectory;
+import static android.os.Environment.getExternalStorageDirectory;
+
 /**
  * Created by ali on 8/20/18.
  */
@@ -31,14 +34,8 @@ public abstract class GRepo {
                 ModeRootPath = context.getCacheDir();
                 break;
             case EXTERNAL:
-                ModeRootPath = context.getExternalFilesDir(null);
+                ModeRootPath = getExternalStorageDirectory();
                 break;
         }
-    }
-
-    public void Remove(String filename) {
-        filename = ModeRootPath + "/" + filename;
-        File f = new File(filename);
-        if (f.exists()) f.delete();
     }
 }
