@@ -29,11 +29,12 @@ see [wiki](https://github.com/ali77gh/EasyDataAndroid/wiki) for more samples
 2. <s>Byte Repo</s>
 3. <s>String Repo</s>
 4. <s>Object Repo</s>
-5. add GetAll , RemoveAll
-6. Test all
+5. <s>add GetAll , RemoveAll</s>
+6. <s>Test all</s>
 7. key-value object repo using sqlite
 8. encryption mode (for sensitive data like password,...)
 9. Async/sync methods
+10. jitpack
 
 # Thanks
 [stackoverflow.com](https://stackoverflow.com/)
