@@ -13,6 +13,8 @@ import com.example.easyrepolib.repos.ByteRepo;
 import com.example.easyrepolib.repos.ObjectRepo;
 import com.example.easyrepolib.repos.StringRepo;
 
+import java.io.File;
+
 public class TestActivity extends AppCompatActivity {
 
     private TextView log;
@@ -34,7 +36,7 @@ public class TestActivity extends AppCompatActivity {
 
     private void BitmapTest() {
 
-        BitmapRepo bitmapRepo = new BitmapRepo(this, GRepo.Mode.EXTERNAL);
+        BitmapRepo bitmapRepo = new BitmapRepo(this, GRepo.Mode.LOCAL);
 
         Bitmap mBitmap = getBitmapForTest();
 
@@ -60,6 +62,11 @@ public class TestActivity extends AppCompatActivity {
 
         image.setImageBitmap(loadedBitmap);
 
+        log("bitmaps");
+        for (File file:bitmapRepo.GetAll()){
+            log("--"+file.getName());
+        }
+
         log("removing...");
         bitmapRepo.Remove("test");
         log("removed");
@@ -76,7 +83,7 @@ public class TestActivity extends AppCompatActivity {
 
     private void ByteTest() {
 
-        ByteRepo byteRepo = new ByteRepo(this, GRepo.Mode.EXTERNAL);
+        ByteRepo byteRepo = new ByteRepo(this, GRepo.Mode.LOCAL);
 
         byte[] bytes = new byte[4];
 
@@ -107,6 +114,13 @@ public class TestActivity extends AppCompatActivity {
 
         log("READED:" + loadedBytes);
 
+        log("bytes");
+        for (File file:byteRepo.GetAll()){
+            log("--"+file.getName());
+        }
+
+
+
         log("removing...");
         byteRepo.Remove("test");
         log("removed");
@@ -123,7 +137,7 @@ public class TestActivity extends AppCompatActivity {
 
     private void StringTest() {
 
-        StringRepo stringRepo = new StringRepo(this, GRepo.Mode.EXTERNAL);
+        StringRepo stringRepo = new StringRepo(this, GRepo.Mode.LOCAL);
 
         String string = "write this file";
 
@@ -149,6 +163,18 @@ public class TestActivity extends AppCompatActivity {
 
         log("READED:" + loadedString);
 
+        log("strings");
+        for (File file:stringRepo.GetAll()){
+            log("--"+file.getName());
+        }
+
+        stringRepo.RemoveAll();
+
+        log("strings");
+        for (File file:stringRepo.GetAll()){
+            log("--"+file.getName());
+        }
+
         log("removing...");
         stringRepo.Remove("test");
         log("removed");
@@ -165,7 +191,7 @@ public class TestActivity extends AppCompatActivity {
 
     private void ObjectTest() {
 
-        ObjectRepo objectRepo = new ObjectRepo<Model>(this, GRepo.Mode.EXTERNAL);
+        ObjectRepo objectRepo = new ObjectRepo<Model>(this, GRepo.Mode.LOCAL);
 
         Model model = new Model();
         model.name = "ali";
@@ -180,6 +206,11 @@ public class TestActivity extends AppCompatActivity {
         log("--" + ReadedModel.name);
         log("--" + ReadedModel.Lname);
         log("--" + ReadedModel.age);
+
+        log("objects");
+        for (File file:objectRepo.GetAll()){
+            log("--"+file.getName());
+        }
 
         objectRepo.Remove("object");
         log("removed");
