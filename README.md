@@ -32,8 +32,8 @@ see [wiki](https://github.com/ali77gh/EasyDataAndroid/wiki) for more samples
 5. <s>add GetAll , RemoveAll</s>
 6. <s>Test all</s>
 7. key-value object repo using sqlite
-8. encryption mode (for sensitive data like password,...)
-9. Async/sync methods
+8. encryption mode (for sensitive data like password,...) 50%
+9. <s>Async/sync methods</s>
 10. jitpack
 
 # Thanks
