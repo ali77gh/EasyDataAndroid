@@ -1,12 +1,12 @@
 package com.example.easyrepolib.repos;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.example.easyrepolib.abstracts.GModel;
 import com.example.easyrepolib.abstracts.GRepo;
+import com.example.easyrepolib.abstracts.onSaveCompleted;
 import com.google.gson.Gson;
-
-import java.io.File;
 
 /**
  * Created by ali on 8/22/18.
@@ -16,7 +16,10 @@ public class ObjectRepo<T extends GModel> extends GRepo {
 
     private Gson _gson;
     private StringRepo _stringRepo;
-    private String postFix = ".json";
+
+    public interface OnObjectLoad {
+        void onObjectLoad(Object obj);
+    }
 
     /**
      * @param context context
@@ -25,6 +28,7 @@ public class ObjectRepo<T extends GModel> extends GRepo {
     public ObjectRepo(Context context, Mode mode) {
         super(context, mode);
         _gson = new Gson();
+        postFix = ".json";
         _stringRepo = new StringRepo(context, mode, postFix);
     }
 
@@ -41,18 +45,52 @@ public class ObjectRepo<T extends GModel> extends GRepo {
 
     }
 
-    public boolean CheckExist(String filename, Class<T> type) {
-        return (Load(filename, type) != null);
+    public void LoadAsync(final String filename,final Class<T> type, final Activity activity, final OnObjectLoad callback ) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final Object obj = Load(filename,type);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onObjectLoad(obj);
+                    }
+                });
+            }
+        }).start();
+
     }
 
-    public void Save(T object, String filename) {
+    public void Save(String filename,T object) {
         _stringRepo.Save(filename, _gson.toJson(object));
     }
 
-    public void Remove(String filename) {
-        filename = ModeRootPath + "/" + filename + postFix;
-        File f = new File(filename);
-        if (f.exists()) f.delete();
+    public void SaveAsync(final String filename, final T  obj, final Activity activity,final onSaveCompleted callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Save(filename, obj);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onSaveComplete();
+                    }
+                });
+            }
+        }).start();
+
+    }
+
+    public void SaveAsync(final String filename, final T obj) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Save(filename, obj);
+            }
+        }).start();
     }
 
 }

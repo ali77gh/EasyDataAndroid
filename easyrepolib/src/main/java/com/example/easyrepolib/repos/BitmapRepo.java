@@ -1,10 +1,12 @@
 package com.example.easyrepolib.repos;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.easyrepolib.abstracts.GRepo;
+import com.example.easyrepolib.abstracts.onSaveCompleted;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,7 +18,9 @@ import java.io.IOException;
 
 public class BitmapRepo extends GRepo {
 
-    private String postFix = ".png";
+    public interface OnBitmapLoad {
+        void onBitmapLoad(Bitmap bitmap);
+    }
 
     /**
      * @param context context
@@ -24,6 +28,7 @@ public class BitmapRepo extends GRepo {
      */
     public BitmapRepo(Context context, Mode mode) {
         super(context, mode);
+        postFix = ".png";
     }
 
     /**
@@ -39,11 +44,21 @@ public class BitmapRepo extends GRepo {
         return BitmapFactory.decodeFile(fileName);
     }
 
-    /**
-     * @return true if file exist
-     */
-    public boolean CheckExist(String fileName) {
-        return Load(fileName) != null;
+    public void LoadAsync(final String filename, final Activity activity, final OnBitmapLoad callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final Bitmap bitmap = Load(filename);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onBitmapLoad(bitmap);
+                    }
+                });
+            }
+        }).start();
+
     }
 
     /**
@@ -62,9 +77,33 @@ public class BitmapRepo extends GRepo {
         }
     }
 
-    public void Remove(String filename) {
-        filename = ModeRootPath + "/" + filename + postFix;
-        File f = new File(filename);
-        if (f.exists()) f.delete();
+    public void SaveAsync(final String filename, final Bitmap bmp, final Activity activity, final onSaveCompleted callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Save(filename, bmp);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onSaveComplete();
+                    }
+                });
+            }
+        }).start();
+
     }
+
+    public void SaveAsync(final String filename, final Bitmap bmp) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Save(filename, bmp);
+            }
+        }).start();
+    }
+
+
 }
+

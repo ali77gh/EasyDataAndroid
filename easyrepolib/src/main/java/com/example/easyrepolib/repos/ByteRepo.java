@@ -1,8 +1,10 @@
 package com.example.easyrepolib.repos;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.example.easyrepolib.abstracts.GRepo;
+import com.example.easyrepolib.abstracts.onSaveCompleted;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -16,28 +18,17 @@ import java.io.IOException;
 
 public class ByteRepo extends GRepo {
 
+    public interface OnBytesLoad {
+        void onBytesLoad(byte[] bytes);
+    }
+
     /**
      * @param context context
      * @param mode    one of GRepo.LOCAL , GRepo.CACHE , GRepo.EXTERNAL
      */
     public ByteRepo(Context context, Mode mode) {
         super(context, mode);
-    }
-
-    public void Save(String filename, byte[] bytes) {
-        filename = ModeRootPath + "/" + filename;
-        try {
-            FileOutputStream out = new FileOutputStream(filename);
-            out.write(bytes);
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public boolean CheckExist(String fileName) {
-        return Load(fileName) != null;
+        postFix=".bytes";
     }
 
     public byte[] Load(String filename) {
@@ -59,9 +50,60 @@ public class ByteRepo extends GRepo {
         return null;
     }
 
-    public void Remove(String filename) {
-        filename = ModeRootPath + "/" + filename;
-        File f = new File(filename);
-        if (f.exists()) f.delete();
+    public void LoadAsync(final String filename, final Activity activity, final OnBytesLoad callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final byte[] bytes = Load(filename);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onBytesLoad(bytes);
+                    }
+                });
+            }
+        }).start();
+
     }
+
+    public void Save(String filename, byte[] bytes) {
+        filename = ModeRootPath + "/" + filename;
+        try {
+            FileOutputStream out = new FileOutputStream(filename);
+            out.write(bytes);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void SaveAsync(final String filename, final byte[] bytes, final Activity activity, final onSaveCompleted callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Save(filename, bytes);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onSaveComplete();
+                    }
+                });
+            }
+        }).start();
+
+    }
+
+    public void SaveAsync(final String filename, final byte[] bytes) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Save(filename, bytes);
+            }
+        }).start();
+    }
+
 }

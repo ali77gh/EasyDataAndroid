@@ -1,9 +1,11 @@
 package com.example.easyrepolib.repos;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
 import com.example.easyrepolib.abstracts.GRepo;
+import com.example.easyrepolib.abstracts.onSaveCompleted;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,7 +13,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
@@ -21,9 +22,9 @@ import java.io.OutputStreamWriter;
 
 public class StringRepo extends GRepo {
 
-
-    private Context _context;
-    private String postFix = ".txt";
+    public interface OnStringLoad {
+        void onStringLoad(String string);
+    }
 
     /**
      * @param context context
@@ -31,12 +32,11 @@ public class StringRepo extends GRepo {
      */
     public StringRepo(Context context, Mode mode) {
         super(context, mode);
-        _context = context;
+        postFix = ".txt";
     }
 
     public StringRepo(Context context, Mode mode, String postFix) {
         super(context, mode);
-        _context = context;
         this.postFix = postFix;
     }
 
@@ -71,9 +71,21 @@ public class StringRepo extends GRepo {
         }
     }
 
+    public void LoadAsync(final String filename, final Activity activity, final OnStringLoad callback) {
 
-    public boolean CheckExist(String fileName) {
-        return Load(fileName) != null;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final String string = Load(filename);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onStringLoad(string);
+                    }
+                });
+            }
+        }).start();
+
     }
 
     public void Save(String fileName, String data) {
@@ -88,10 +100,31 @@ public class StringRepo extends GRepo {
         }
     }
 
-    public void Remove(String filename) {
-        filename = ModeRootPath + "/" + filename + postFix;
-        File f = new File(filename);
-        if (f.exists()) f.delete();
+    public void SaveAsync(final String filename, final String string, final Activity activity, final onSaveCompleted callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Save(filename, string);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        callback.onSaveComplete();
+                    }
+                });
+            }
+        }).start();
+
+    }
+
+    public void SaveAsync(final String filename, final String string) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Save(filename, string);
+            }
+        }).start();
     }
 
 }

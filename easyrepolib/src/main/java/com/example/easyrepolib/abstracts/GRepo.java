@@ -3,8 +3,9 @@ package com.example.easyrepolib.abstracts;
 import android.content.Context;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
-import static android.os.Environment.getDataDirectory;
 import static android.os.Environment.getExternalStorageDirectory;
 
 /**
@@ -14,6 +15,8 @@ import static android.os.Environment.getExternalStorageDirectory;
 public abstract class GRepo {
 
     protected File ModeRootPath;
+
+    protected String postFix;
 
     public enum Mode {
         LOCAL,
@@ -36,6 +39,48 @@ public abstract class GRepo {
             case EXTERNAL:
                 ModeRootPath = getExternalStorageDirectory();
                 break;
+        }
+    }
+
+    /**
+     * @return true if file exist
+     */
+    public boolean CheckExist(String fileName) {
+        fileName = ModeRootPath + "/" + fileName + postFix;
+        File f = new File(fileName);
+        if (f.exists()) return true;
+        else return false;
+    }
+
+    public void Remove(String filename) {
+        filename = ModeRootPath + "/" + filename + postFix;
+        File f = new File(filename);
+        if (f.exists()) f.delete();
+    }
+
+    public List<File> GetAll() {
+        File[] files = ModeRootPath.listFiles();
+
+        //todo becarefull about user files in external storage
+        List<File> matches = new ArrayList<>();
+        for (File file : files) {
+            try {
+                String n = file.getName();
+                n = n.substring(n.indexOf(".")+1);
+                boolean t = n.equals(postFix.substring(1));
+                if (t) {
+                    matches.add(file);
+                }
+            } catch (IndexOutOfBoundsException ignore) {
+            }
+        }
+        return matches;
+    }
+
+    public void RemoveAll() {
+        List<File> files = GetAll();
+        for (File file : files) {
+            file.delete();
         }
     }
 }

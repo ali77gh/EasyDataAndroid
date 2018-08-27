@@ -2,8 +2,8 @@ package com.example.ali.easyrepo;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -215,7 +215,7 @@ public class TestActivity extends AppCompatActivity {
         objectRepo.Remove("object");
         log("removed");
 
-        if (objectRepo.CheckExist("object", Model.class)) {
+        if (objectRepo.CheckExist("object")) {
             log("test is exist");
         } else {
             log("test is not exist ");
