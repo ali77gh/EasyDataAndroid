@@ -12,6 +12,7 @@ import com.example.easyrepolib.repos.BitmapRepo;
 import com.example.easyrepolib.repos.ByteRepo;
 import com.example.easyrepolib.repos.ObjectRepo;
 import com.example.easyrepolib.repos.StringRepo;
+import com.example.easyrepolib.security.DeviceKeyGenerator;
 
 import java.io.File;
 
@@ -78,6 +79,8 @@ public class TestActivity extends AppCompatActivity {
         }
 
         log("------------bitmap test done-----------");
+
+        log(DeviceKeyGenerator.Generate(this,"MySecret"));
 
     }
 
@@ -198,7 +201,7 @@ public class TestActivity extends AppCompatActivity {
         model.Lname = "gh";
         model.age = 20;
 
-        objectRepo.Save(model, "object");
+        objectRepo.Save("object",model);
 
         Model ReadedModel = (Model) objectRepo.Load("object", Model.class);
 

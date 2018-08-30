@@ -78,6 +78,10 @@ public abstract class GRepo {
     }
 
     public void RemoveAll() {
+
+        if (ModeRootPath.equals(getExternalStorageDirectory())){
+            throw new RuntimeException("don't use remove all in external mode ");
+        }
         List<File> files = GetAll();
         for (File file : files) {
             file.delete();

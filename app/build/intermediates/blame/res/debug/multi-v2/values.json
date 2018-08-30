@@ -1,25 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "/home/ali/hooshkar/lastFennec/EasyRepo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/home/ali/GitHub/EasyRepo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
-                {
-                    "source": "/home/ali/hooshkar/lastFennec/EasyRepo/app/src/main/res/values/strings.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "45",
-                        "endOffsets": "57"
-                    },
-                    "to": {
-                        "startLines": "494",
-                        "startColumns": "4",
-                        "startOffsets": "41518",
-                        "endColumns": "45",
-                        "endOffsets": "41559"
-                    }
-                },
                 {
                     "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/dadcf113858a332de9715cc6a120ac97/res/values/values.xml",
                     "from": {
@@ -37,6 +20,25 @@
                         "endLines": "53,54,406,407,408,409,410,420,421,422,423,424,425,426,427,428,429,430,431,432,433,434,443,444,450,451,455,456,457,458,464,496,1806,1810,1811,1815,1816,1953,1954",
                         "endColumns": "68,62,69,67,71,69,60,60,60,61,63,61,60,67,99,59,65,72,68,56,51,61,71,75,34,34,49,33,34,34,69,70,116,12,109,12,128,71,66",
                         "endOffsets": "3513,3576,35810,35878,35950,36020,36081,36926,36987,37049,37113,37175,37236,37304,37404,37464,37530,37603,37672,37729,37781,37843,38368,38444,38718,38753,38945,38979,39014,39049,39394,41683,129000,129201,129311,129512,129641,140539,140606"
+                    }
+                },
+                {
+                    "source": "/home/ali/GitHub/EasyRepo/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "54",
+                        "endLines": "8",
+                        "endColumns": "12",
+                        "endOffsets": "368"
+                    },
+                    "to": {
+                        "startLines": "502",
+                        "startColumns": "4",
+                        "startOffsets": "42130",
+                        "endLines": "507",
+                        "endColumns": "12",
+                        "endOffsets": "42444"
                     }
                 },
                 {
@@ -78,7 +80,7 @@
                     }
                 },
                 {
-                    "source": "/home/ali/hooshkar/lastFennec/EasyRepo/app/src/main/res/values/colors.xml",
+                    "source": "/home/ali/GitHub/EasyRepo/app/src/main/res/values/colors.xml",
                     "from": {
                         "startLines": "4,2,3",
                         "startColumns": "4,4,4",
@@ -95,22 +97,20 @@
                     }
                 },
                 {
-                    "source": "/home/ali/hooshkar/lastFennec/EasyRepo/app/src/main/res/values/styles.xml",
+                    "source": "/home/ali/GitHub/EasyRepo/app/src/main/res/values/strings.xml",
                     "from": {
-                        "startLines": "3",
+                        "startLines": "1",
                         "startColumns": "4",
-                        "startOffsets": "54",
-                        "endLines": "8",
-                        "endColumns": "12",
-                        "endOffsets": "368"
+                        "startOffsets": "16",
+                        "endColumns": "45",
+                        "endOffsets": "57"
                     },
                     "to": {
-                        "startLines": "502",
+                        "startLines": "494",
                         "startColumns": "4",
-                        "startOffsets": "42130",
-                        "endLines": "507",
-                        "endColumns": "12",
-                        "endOffsets": "42444"
+                        "startOffsets": "41518",
+                        "endColumns": "45",
+                        "endOffsets": "41559"
                     }
                 }
             ]
