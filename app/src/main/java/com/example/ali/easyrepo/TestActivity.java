@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.easyrepolib.abstracts.GRepo;
+import com.example.easyrepolib.abstracts.onSaveCompleted;
 import com.example.easyrepolib.repos.BitmapRepo;
 import com.example.easyrepolib.repos.ByteRepo;
 import com.example.easyrepolib.repos.ObjectRepo;
@@ -30,55 +31,34 @@ public class TestActivity extends AppCompatActivity {
 
         //run tests
         BitmapTest();
-        StringTest();
-        ByteTest();
-        ObjectTest();
+        //StringTest();
+        //ByteTest();
+        //ObjectTest();
     }
 
     private void BitmapTest() {
 
-        BitmapRepo bitmapRepo = new BitmapRepo(this, GRepo.Mode.LOCAL);
+        final BitmapRepo bitmapRepo = new BitmapRepo(this, GRepo.Mode.LOCAL);
 
         Bitmap mBitmap = getBitmapForTest();
 
-        if (bitmapRepo.CheckExist("test")) {
-            log("test is exist");
-        } else {
-            log("test is not exist ");
-        }
+       bitmapRepo.SaveAsync("filename", mBitmap, this, new onSaveCompleted() {
+           @Override
+           public void onSaveComplete() {
+               bitmapRepo.LoadAsync("filename", TestActivity.this, new BitmapRepo.OnBitmapLoad() {
+                   @Override
+                   public void onBitmapLoad(final Bitmap bitmap) {
+                       runOnUiThread(new Runnable() {
+                           @Override
+                           public void run() {
+                               image.setImageBitmap(bitmap);
+                           }
+                       });
 
-        log("saving...");
-        bitmapRepo.Save("test", mBitmap);
-        log("saved");
-
-        if (bitmapRepo.CheckExist("test")) {
-            log("test is exist");
-        } else {
-            log("test is not exist ");
-        }
-
-        log("loading...");
-        Bitmap loadedBitmap = bitmapRepo.Load("test");
-        log("loaded");
-
-        image.setImageBitmap(loadedBitmap);
-
-        log("bitmaps");
-        for (File file:bitmapRepo.GetAll()){
-            log("--"+file.getName());
-        }
-
-        log("removing...");
-        bitmapRepo.Remove("test");
-        log("removed");
-
-        if (bitmapRepo.CheckExist("test")) {
-            log("test is exist");
-        } else {
-            log("test is not exist ");
-        }
-
-        log("------------bitmap test done-----------");
+                   }
+               });
+           }
+       });
 
         log(DeviceKeyGenerator.Generate(this,"MySecret"));
 

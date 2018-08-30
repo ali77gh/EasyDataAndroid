@@ -384,38 +384,6 @@
             ]
         },
         {
-            "outputFile": "/home/ali/GitHub/EasyRepo/app/build/intermediates/res/merged/debug/values-ar_values-ar.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e2d4ddd40ecd3087df52ac7e7809ae47/res/values-ar/values-ar.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,222,326,435,517,618,732,811,890,969,1074,1175,1271,1379,1482,1585,1740,1837",
-                        "endColumns": "116,103,108,81,100,113,78,78,78,104,100,95,107,102,102,154,96,80",
-                        "endOffsets": "217,321,430,512,613,727,806,885,964,1069,1170,1266,1374,1477,1580,1735,1832,1913"
-                    }
-                },
-                {
-                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/dadcf113858a332de9715cc6a120ac97/res/values-ar/values-ar.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "1918",
-                        "endColumns": "100",
-                        "endOffsets": "2014"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/home/ali/GitHub/EasyRepo/app/build/intermediates/res/merged/debug/values-af_values-af.arsc.flat",
             "map": [
                 {
@@ -443,6 +411,38 @@
                         "startOffsets": "105,209,309,415,500,603,721,797,874,955,1062,1165,1262,1370,1472,1574,1728,1826",
                         "endColumns": "103,99,105,84,102,117,75,76,80,106,102,96,107,101,101,153,97,79",
                         "endOffsets": "204,304,410,495,598,716,792,869,950,1057,1160,1257,1365,1467,1569,1723,1821,1901"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/ali/GitHub/EasyRepo/app/build/intermediates/res/merged/debug/values-ar_values-ar.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e2d4ddd40ecd3087df52ac7e7809ae47/res/values-ar/values-ar.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,222,326,435,517,618,732,811,890,969,1074,1175,1271,1379,1482,1585,1740,1837",
+                        "endColumns": "116,103,108,81,100,113,78,78,78,104,100,95,107,102,102,154,96,80",
+                        "endOffsets": "217,321,430,512,613,727,806,885,964,1069,1170,1266,1374,1477,1580,1735,1832,1913"
+                    }
+                },
+                {
+                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/dadcf113858a332de9715cc6a120ac97/res/values-ar/values-ar.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "1918",
+                        "endColumns": "100",
+                        "endOffsets": "2014"
                     }
                 }
             ]
@@ -984,38 +984,6 @@
             ]
         },
         {
-            "outputFile": "/home/ali/GitHub/EasyRepo/app/build/intermediates/res/merged/debug/values-fa_values-fa.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/dadcf113858a332de9715cc6a120ac97/res/values-fa/values-fa.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "1948",
-                        "endColumns": "100",
-                        "endOffsets": "2044"
-                    }
-                },
-                {
-                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e2d4ddd40ecd3087df52ac7e7809ae47/res/values-fa/values-fa.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,215,318,429,513,616,731,810,888,969,1081,1184,1282,1392,1496,1605,1766,1867",
-                        "endColumns": "109,102,110,83,102,114,78,77,80,111,102,97,109,103,108,160,100,80",
-                        "endOffsets": "210,313,424,508,611,726,805,883,964,1076,1179,1277,1387,1491,1600,1761,1862,1943"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/home/ali/GitHub/EasyRepo/app/build/intermediates/res/merged/debug/values-nl_values-nl.arsc.flat",
             "map": [
                 {
@@ -1043,6 +1011,38 @@
                         "startOffsets": "1970",
                         "endColumns": "100",
                         "endOffsets": "2066"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/ali/GitHub/EasyRepo/app/build/intermediates/res/merged/debug/values-fa_values-fa.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/dadcf113858a332de9715cc6a120ac97/res/values-fa/values-fa.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "1948",
+                        "endColumns": "100",
+                        "endOffsets": "2044"
+                    }
+                },
+                {
+                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e2d4ddd40ecd3087df52ac7e7809ae47/res/values-fa/values-fa.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,215,318,429,513,616,731,810,888,969,1081,1184,1282,1392,1496,1605,1766,1867",
+                        "endColumns": "109,102,110,83,102,114,78,77,80,111,102,97,109,103,108,160,100,80",
+                        "endOffsets": "210,313,424,508,611,726,805,883,964,1076,1179,1277,1387,1491,1600,1761,1862,1943"
                     }
                 }
             ]
