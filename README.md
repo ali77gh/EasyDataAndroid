@@ -68,9 +68,8 @@ see [wiki](https://github.com/ali77gh/EasyDataAndroid/wiki) for more samples
 7. <s>encryption mode (for sensitive data like password,...) </s>
 8. <s>Async/sync methods</s>
 9. <s>jitpack</s>
-
-# Thanks
-[stackoverflow.com](https://stackoverflow.com/)
+10. android >6 permission
+11. key-val database for custom models
 
 # LICENCE
 [MIT](https://github.com/ali77gh/EasyDataAndroid/blob/master/LICENSE)
