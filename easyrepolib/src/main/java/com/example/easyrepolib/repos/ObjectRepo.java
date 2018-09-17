@@ -3,7 +3,6 @@ package com.example.easyrepolib.repos;
 import android.app.Activity;
 import android.content.Context;
 
-import com.example.easyrepolib.abstracts.GModel;
 import com.example.easyrepolib.abstracts.GRepo;
 import com.example.easyrepolib.abstracts.onSaveCompleted;
 import com.google.gson.Gson;
@@ -12,7 +11,7 @@ import com.google.gson.Gson;
  * Created by ali on 8/22/18.
  */
 
-public class ObjectRepo<T extends GModel> extends GRepo {
+public class ObjectRepo extends GRepo {
 
     private Gson _gson;
     private StringRepo _stringRepo;
@@ -32,7 +31,7 @@ public class ObjectRepo<T extends GModel> extends GRepo {
         _stringRepo = new StringRepo(context, mode, postFix);
     }
 
-    public T Load(String filename, Class<T> type) {
+    public Object Load(String filename, Class<?> type) {
         String stringAccount = _stringRepo.Load(filename);
 
         try {
@@ -45,7 +44,7 @@ public class ObjectRepo<T extends GModel> extends GRepo {
 
     }
 
-    public void LoadAsync(final String filename,final Class<T> type, final Activity activity, final OnObjectLoad callback ) {
+    public void LoadAsync(final String filename,final Class<?> type, final Activity activity, final OnObjectLoad callback ) {
 
         new Thread(new Runnable() {
             @Override
@@ -62,11 +61,11 @@ public class ObjectRepo<T extends GModel> extends GRepo {
 
     }
 
-    public void Save(String filename,T object) {
+    public void Save(String filename,Object object) {
         _stringRepo.Save(filename, _gson.toJson(object));
     }
 
-    public void SaveAsync(final String filename, final T  obj, final Activity activity,final onSaveCompleted callback) {
+    public void SaveAsync(final String filename, final Object  obj, final Activity activity,final onSaveCompleted callback) {
 
         new Thread(new Runnable() {
             @Override
@@ -83,7 +82,7 @@ public class ObjectRepo<T extends GModel> extends GRepo {
 
     }
 
-    public void SaveAsync(final String filename, final T obj) {
+    public void SaveAsync(final String filename, final Object obj) {
 
         new Thread(new Runnable() {
             @Override

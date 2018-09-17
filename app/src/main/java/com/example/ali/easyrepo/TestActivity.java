@@ -30,10 +30,10 @@ public class TestActivity extends AppCompatActivity {
         image = findViewById(R.id.image);
 
         //run tests
-        BitmapTest();
+        //BitmapTest();
         //StringTest();
         //ByteTest();
-        //ObjectTest();
+        ObjectTest();
     }
 
     private void BitmapTest() {
@@ -42,25 +42,19 @@ public class TestActivity extends AppCompatActivity {
 
         Bitmap mBitmap = getBitmapForTest();
 
-       bitmapRepo.SaveAsync("filename", mBitmap, this, new onSaveCompleted() {
-           @Override
-           public void onSaveComplete() {
-               bitmapRepo.LoadAsync("filename", TestActivity.this, new BitmapRepo.OnBitmapLoad() {
-                   @Override
-                   public void onBitmapLoad(final Bitmap bitmap) {
-                       runOnUiThread(new Runnable() {
-                           @Override
-                           public void run() {
-                               image.setImageBitmap(bitmap);
-                           }
-                       });
+        bitmapRepo.SaveAsync("filename", mBitmap, this, new onSaveCompleted() {
+            @Override
+            public void onSaveComplete() {
+                bitmapRepo.LoadAsync("filename", TestActivity.this, new BitmapRepo.OnBitmapLoad() {
+                    @Override
+                    public void onBitmapLoad(final Bitmap bitmap) {
+                        image.setImageBitmap(bitmap);
+                    }
+                });
+            }
+        });
 
-                   }
-               });
-           }
-       });
-
-        log(DeviceKeyGenerator.Generate(this,"MySecret"));
+        log(DeviceKeyGenerator.Generate(this, "MySecret"));
 
     }
 
@@ -98,10 +92,9 @@ public class TestActivity extends AppCompatActivity {
         log("READED:" + loadedBytes);
 
         log("bytes");
-        for (File file:byteRepo.GetAll()){
-            log("--"+file.getName());
+        for (File file : byteRepo.GetAll()) {
+            log("--" + file.getName());
         }
-
 
 
         log("removing...");
@@ -147,15 +140,15 @@ public class TestActivity extends AppCompatActivity {
         log("READED:" + loadedString);
 
         log("strings");
-        for (File file:stringRepo.GetAll()){
-            log("--"+file.getName());
+        for (File file : stringRepo.GetAll()) {
+            log("--" + file.getName());
         }
 
         stringRepo.RemoveAll();
 
         log("strings");
-        for (File file:stringRepo.GetAll()){
-            log("--"+file.getName());
+        for (File file : stringRepo.GetAll()) {
+            log("--" + file.getName());
         }
 
         log("removing...");
@@ -174,14 +167,14 @@ public class TestActivity extends AppCompatActivity {
 
     private void ObjectTest() {
 
-        ObjectRepo objectRepo = new ObjectRepo<Model>(this, GRepo.Mode.LOCAL);
+        ObjectRepo objectRepo = new ObjectRepo(this, GRepo.Mode.LOCAL);
 
         Model model = new Model();
         model.name = "ali";
         model.Lname = "gh";
         model.age = 20;
 
-        objectRepo.Save("object",model);
+        objectRepo.Save("object", model);
 
         Model ReadedModel = (Model) objectRepo.Load("object", Model.class);
 
@@ -191,8 +184,8 @@ public class TestActivity extends AppCompatActivity {
         log("--" + ReadedModel.age);
 
         log("objects");
-        for (File file:objectRepo.GetAll()){
-            log("--"+file.getName());
+        for (File file : objectRepo.GetAll()) {
+            log("--" + file.getName());
         }
 
         objectRepo.Remove("object");
