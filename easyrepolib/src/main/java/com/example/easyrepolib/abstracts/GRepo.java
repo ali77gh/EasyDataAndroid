@@ -52,6 +52,9 @@ public abstract class GRepo {
         else return false;
     }
 
+    /**
+     * @param filename be careful about user files in external storage mode
+     * */
     public void Remove(String filename) {
         filename = ModeRootPath + "/" + filename + postFix;
         File f = new File(filename);
@@ -61,7 +64,6 @@ public abstract class GRepo {
     public List<File> GetAll() {
         File[] files = ModeRootPath.listFiles();
 
-        //todo becarefull about user files in external storage
         List<File> matches = new ArrayList<>();
         for (File file : files) {
             try {

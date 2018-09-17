@@ -7,6 +7,6 @@ package com.example.ali.easyrepo;
 public class Model {
 
     public String name;
-    public String Lname;
+    public String lName;
     public int age;
 }

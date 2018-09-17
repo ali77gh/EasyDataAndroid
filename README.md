@@ -69,7 +69,7 @@ see [wiki](https://github.com/ali77gh/EasyDataAndroid/wiki) for more samples
 8. <s>Async/sync methods</s>
 9. <s>jitpack</s>
 10. android >6 permission
-11. key-val database for custom models
+11. key-val database for custom models done. (add Acync)
 
 # LICENCE
 [MIT](https://github.com/ali77gh/EasyDataAndroid/blob/master/LICENSE)
