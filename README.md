@@ -3,22 +3,8 @@ an android lib that make Save , load , Remove easy for you on EXTERNAL,INTERNAL,
 for bitmap , string , byteArray , Object,...
 
 # installation
-Add it in your root build.gradle at the end of repositories:
-~~~Groovy
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
-~~~
-Add the dependency
-~~~Groovy
-	dependencies {
-	        implementation 'com.github.ali77gh:EasyDataAndroid:1.0.0'
-	}
-~~~
-
+download [jar](https://github.com/ali77gh/EasyDataAndroid/releases/download/2.0.0/easydataandroid.jar) file <br>
+[install guid](https://github.com/ali77gh/EasyDataAndroid/wiki/install)
 # How To Use
 for EXTERNAL mode add following permission to manifest.xml and also request for permission for api > 21
 ~~~xml
