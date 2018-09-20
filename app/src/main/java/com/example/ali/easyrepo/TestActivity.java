@@ -166,72 +166,13 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void ObjectTest() {
-
-//        ObjectRepo objectRepo = new ObjectRepo(this, GRepo.Mode.LOCAL);
-//
-//        Model model = new Model();
-//        model.name = "ali";
-//        model.lName = "gh";
-//        model.age = 20;
-//
-//        objectRepo.Save("object", model);
-//
-//        Model ReadedModel = (Model) objectRepo.Load("object", Model.class);
-//
-//        log("ReadedModel:");
-//        log("--" + ReadedModel.name);
-//        log("--" + ReadedModel.lName);
-//        log("--" + ReadedModel.age);
-//
-//        log("objects");
-//        for (File file : objectRepo.GetAll()) {
-//            log("--" + file.getName());
-//        }
-//
-//        objectRepo.Remove("object");
-//        log("removed");
-//
-//        if (objectRepo.CheckExist("object")) {
-//            log("test is exist");
-//        } else {
-//            log("test is not exist ");
-//        }
-//
-//        log("------------objects test done-----------");
+        StringRepo stringRepo = new StringRepo(this, GRepo.Mode.LOCAL);
 
     }
 
     private void KeyValDbTest() {
 
-//        new KeyValDb(this, "mytable").Drop();
-//
-//        KeyValDb keyValDb = new KeyValDb(this, "mytable");
-//
-//        Model model = new Model();
-//        model.name = "ali";
-//        model.lName = "ghahremani";
-//        model.age = 20;
-//        keyValDb.insert("key", model);
-//        model.name = "new name";
-//        keyValDb.insert("key", model);
-//
-//        List<Object> objects = keyValDb.ReadAllOfType(Model.class);
-//        for (Object object : objects) {
-//            Model model1 = (Model) object;
-//            log(model1.name);
-//        }
-//        List<Object> objects2 = keyValDb.ReadWithCondision(new KeyValDb.Condition() {
-//            @Override
-//            public boolean IsConditionTrue(Object object) {
-//                if (((Model)object).name.equals("ali")) return true;
-//                else return false;
-//            }
-//        }, Model.class);
-//        for (Object object : objects2) {
-//            Model model1 = (Model) object;
-//            log(model1.name);
-//        }
-//        log("------------key-val database test done-----------");
+
     }
 
     private void log(String msg) {

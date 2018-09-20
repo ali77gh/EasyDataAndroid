@@ -1,15 +1,13 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.ali77gh'
 
 android {
     compileSdkVersion 27
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionName '1.8.0'
+        versionName '1.5.0'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionNameSuffix '1.8.0'
+        versionNameSuffix '1.5.0'
     }
     buildTypes {
         release {
@@ -20,6 +18,19 @@ android {
     productFlavors {
     }
 }
+
+task deleteJar(type: Delete) {
+    delete 'libs/jars/mylib.jar'
+}
+
+task createJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('libs/jars/')
+    include('classes.jar')
+    rename('classes.jar', 'mylib.jar')
+}
+
+createJar.dependsOn(deleteJar, build)
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
