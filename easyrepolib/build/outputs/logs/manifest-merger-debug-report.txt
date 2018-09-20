@@ -5,17 +5,11 @@ INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
 INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
 INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
 INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
-INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
-INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
 	package
 		ADDED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:2:5-38
 		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
 		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-		ADDED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
-		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-	android:versionCode
 		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
 		ADDED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
 		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml

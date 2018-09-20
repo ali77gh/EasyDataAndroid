@@ -32,10 +32,10 @@ public class TestActivity extends AppCompatActivity {
         image = findViewById(R.id.image);
 
         //run tests
-        //BitmapTest();
-        //StringTest();
-        //ByteTest();
-        //ObjectTest();
+        BitmapTest();
+        StringTest();
+        ByteTest();
+        ObjectTest();
         KeyValDbTest();
     }
 
@@ -200,6 +200,8 @@ public class TestActivity extends AppCompatActivity {
             log("test is not exist ");
         }
 
+        log("------------objects test done-----------");
+
     }
 
     private void KeyValDbTest() {
@@ -221,7 +223,6 @@ public class TestActivity extends AppCompatActivity {
             Model model1 = (Model) object;
             log(model1.name);
         }
-        log("------");
         List<Object> objects2 = keyValDb.ReadWithCondision(new KeyValDb.Condition() {
             @Override
             public boolean IsConditionTrue(Object object) {
@@ -233,6 +234,7 @@ public class TestActivity extends AppCompatActivity {
             Model model1 = (Model) object;
             log(model1.name);
         }
+        log("------------key-val database test done-----------");
     }
 
     private void log(String msg) {
