@@ -1,15 +1,15 @@
 apply plugin: 'com.android.library'
 group='com.github.ali77gh'
-version = "1.6.0"
+version = "1.7.0"
 
 android {
     compileSdkVersion 27
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 27
-        versionName '1.6.0'
+        versionName '1.7.0'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionNameSuffix '1.6.0'
+        versionNameSuffix '1.7.0'
     }
     buildTypes {
         release {
