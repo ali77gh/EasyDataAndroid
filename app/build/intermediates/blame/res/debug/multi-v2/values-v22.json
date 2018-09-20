@@ -4,7 +4,7 @@
             "outputFile": "/home/ali/GitHub/EasyRepo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
             "map": [
                 {
-                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e4b041bd50bccda7c08a541c42393a38/res/values-v22/values-v22.xml",
+                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e1101a0da2c86ef4c77843fc7a544faa/res/values-v22/values-v22.xml",
                     "from": {
                         "startLines": "2,3,4,9",
                         "startColumns": "4,4,4,4",

@@ -4,7 +4,7 @@
             "outputFile": "/home/ali/GitHub/EasyRepo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rHK/values-zh-rHK.xml",
             "map": [
                 {
-                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/04874c27f3cedcf4469a81dc6e8f6a36/res/values-zh-rHK/values-zh-rHK.xml",
+                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/fe8c29986298390def4906d89c6eba28/res/values-zh-rHK/values-zh-rHK.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e4b041bd50bccda7c08a541c42393a38/res/values-zh-rHK/values-zh-rHK.xml",
+                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e1101a0da2c86ef4c77843fc7a544faa/res/values-zh-rHK/values-zh-rHK.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
