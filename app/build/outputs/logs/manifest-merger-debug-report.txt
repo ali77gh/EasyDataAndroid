@@ -4,18 +4,18 @@ ADDED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml:2:1-24:12
 INJECTED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml:2:1-24:12
 INJECTED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml:2:1-24:12
 INJECTED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml:2:1-24:12
-MERGED from [com.github.ali77gh:EasyDataAndroid:1.0.0] /home/ali/.gradle/caches/transforms-1/files-1.1/EasyDataAndroid-1.0.0.aar/82cc01483f618f0c4e118be1cf3657ec/AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:appcompat-v7:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e4b041bd50bccda7c08a541c42393a38/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-fragment:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/fa65b4103b742c751dbf1e7721bb48a3/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:animated-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/e5581f5a34267085cc2778d1809b8f90/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/c3ecde62a6e370c33636a6e5e86a90ab/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/0eee01c41f30bd234316508821751bbf/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/24337a7e308ccf6993a72938b27dbe51/AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/04874c27f3cedcf4469a81dc6e8f6a36/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/4ff10a561df85270e5b76618defc9206/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/336947ee7694bc72b005113a9c05acec/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/ba9b645d6fddfff134f1852f47fed023/AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/8c43645ee15c3922d51397cebac16668/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.ali77gh:EasyDataAndroid:1.0.0] /home/ali/.gradle/caches/transforms-1/files-1.1/EasyDataAndroid-1.0.0.aar/8d0a49b9b7edeb3477266da1c0a76d59/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:appcompat-v7:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/c1d272f509ab7872d12f902f2edc486b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/4636ecd3bb45116500915220666c7d37/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/024f739210d9c39cb753fc36606b37db/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/1178007bdb539e5439650a67a6043a58/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/f853780bd5e92ae8d907acb1e9ee8c7b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/5489da8777b90f607d61486ea43a4023/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/263a2fa70e9208645a4498577b4f6bd6/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/f1722bf1bd2b70b386a5e5444e62fb72/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/6dfb915d2e30dc46b21c0b36b5353e7f/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/cca574ca31ae5ae1e977527dfc7cbffb/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/eadbbe3209348645f204d29eddff2fb5/AndroidManifest.xml:17:1-22:12
 INJECTED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml:2:1-24:12
 INJECTED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml:2:1-24:12
 INJECTED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml:2:1-24:12
@@ -73,30 +73,30 @@ uses-sdk
 INJECTED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml
 INJECTED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml
-MERGED from [com.github.ali77gh:EasyDataAndroid:1.0.0] /home/ali/.gradle/caches/transforms-1/files-1.1/EasyDataAndroid-1.0.0.aar/82cc01483f618f0c4e118be1cf3657ec/AndroidManifest.xml:7:5-9:41
-MERGED from [com.github.ali77gh:EasyDataAndroid:1.0.0] /home/ali/.gradle/caches/transforms-1/files-1.1/EasyDataAndroid-1.0.0.aar/82cc01483f618f0c4e118be1cf3657ec/AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:appcompat-v7:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e4b041bd50bccda7c08a541c42393a38/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/e4b041bd50bccda7c08a541c42393a38/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/fa65b4103b742c751dbf1e7721bb48a3/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/fa65b4103b742c751dbf1e7721bb48a3/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/e5581f5a34267085cc2778d1809b8f90/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/e5581f5a34267085cc2778d1809b8f90/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/c3ecde62a6e370c33636a6e5e86a90ab/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/c3ecde62a6e370c33636a6e5e86a90ab/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/0eee01c41f30bd234316508821751bbf/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/0eee01c41f30bd234316508821751bbf/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/24337a7e308ccf6993a72938b27dbe51/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/24337a7e308ccf6993a72938b27dbe51/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/04874c27f3cedcf4469a81dc6e8f6a36/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/04874c27f3cedcf4469a81dc6e8f6a36/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/4ff10a561df85270e5b76618defc9206/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/4ff10a561df85270e5b76618defc9206/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/336947ee7694bc72b005113a9c05acec/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/336947ee7694bc72b005113a9c05acec/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/ba9b645d6fddfff134f1852f47fed023/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/ba9b645d6fddfff134f1852f47fed023/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/8c43645ee15c3922d51397cebac16668/AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/8c43645ee15c3922d51397cebac16668/AndroidManifest.xml:20:5-44
+MERGED from [com.github.ali77gh:EasyDataAndroid:1.0.0] /home/ali/.gradle/caches/transforms-1/files-1.1/EasyDataAndroid-1.0.0.aar/8d0a49b9b7edeb3477266da1c0a76d59/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.ali77gh:EasyDataAndroid:1.0.0] /home/ali/.gradle/caches/transforms-1/files-1.1/EasyDataAndroid-1.0.0.aar/8d0a49b9b7edeb3477266da1c0a76d59/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/c1d272f509ab7872d12f902f2edc486b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/c1d272f509ab7872d12f902f2edc486b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/4636ecd3bb45116500915220666c7d37/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.0.aar/4636ecd3bb45116500915220666c7d37/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/024f739210d9c39cb753fc36606b37db/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.0.aar/024f739210d9c39cb753fc36606b37db/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/1178007bdb539e5439650a67a6043a58/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.0.aar/1178007bdb539e5439650a67a6043a58/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/f853780bd5e92ae8d907acb1e9ee8c7b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.0.aar/f853780bd5e92ae8d907acb1e9ee8c7b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/5489da8777b90f607d61486ea43a4023/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.0.aar/5489da8777b90f607d61486ea43a4023/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/263a2fa70e9208645a4498577b4f6bd6/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/263a2fa70e9208645a4498577b4f6bd6/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/f1722bf1bd2b70b386a5e5444e62fb72/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/f1722bf1bd2b70b386a5e5444e62fb72/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/6dfb915d2e30dc46b21c0b36b5353e7f/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/6dfb915d2e30dc46b21c0b36b5353e7f/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/cca574ca31ae5ae1e977527dfc7cbffb/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/cca574ca31ae5ae1e977527dfc7cbffb/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/eadbbe3209348645f204d29eddff2fb5/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /home/ali/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/eadbbe3209348645f204d29eddff2fb5/AndroidManifest.xml:20:5-44
 INJECTED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml
 INJECTED from /home/ali/GitHub/EasyRepo/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion
