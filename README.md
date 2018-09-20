@@ -4,7 +4,7 @@ for bitmap , string , byteArray , Object,...
 
 # installation
 download [jar](https://github.com/ali77gh/EasyDataAndroid/releases/download/2.0.0/easydataandroid.jar) file <br>
-[install guid](https://github.com/ali77gh/EasyDataAndroid/wiki/install)
+[install it in simple 3 steps](https://github.com/ali77gh/EasyDataAndroid/wiki/install)
 # How To Use
 for EXTERNAL mode add following permission to manifest.xml and also request for permission for api > 21
 ~~~xml
