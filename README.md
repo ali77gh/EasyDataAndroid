@@ -44,18 +44,8 @@ bitmapRepo.LoadAsync("filename", TestActivity.this, new BitmapRepo.OnBitmapLoad(
 ~~~
 see [wiki](https://github.com/ali77gh/EasyDataAndroid/wiki) for more samples
 
-# TODO:
-1. <s>Bitmap Repo</s>
-2. <s>Byte Repo</s>
-3. <s>String Repo</s>
-4. <s>Object Repo</s>
-5. <s>add GetAll , RemoveAll</s>
-6. <s>Test all</s>
-7. <s>encryption mode (for sensitive data like password,...) </s>
-8. <s>Async/sync methods</s>
-9. <s>jitpack</s>
-10. android >6 permission
-11. key-val database for custom models done. (add Acync)
+# Who Use this?
+[UniTools android](https://github.com/unitools-apps/UniTools-android)
 
 # LICENCE
 [MIT](https://github.com/ali77gh/EasyDataAndroid/blob/master/LICENSE)
