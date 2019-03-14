@@ -15,6 +15,22 @@
                     }
                 }
             ]
+        },
+        {
+            "outputFile": "/home/ali/GitHub/EasyDataAndroid/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml",
+            "map": [
+                {
+                    "source": "/home/ali/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/3bca217f1119c99b73f2abe273ea0cf4/res/values-v22/values-v22.xml",
+                    "from": {
+                        "startLines": "2,3,4,9",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,130,217,553",
+                        "endLines": "2,3,8,13",
+                        "endColumns": "74,86,12,12",
+                        "endOffsets": "125,212,548,896"
+                    }
+                }
+            ]
         }
     ]
 }

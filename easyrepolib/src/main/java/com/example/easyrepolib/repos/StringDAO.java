@@ -20,7 +20,7 @@ import java.io.OutputStreamWriter;
  * Created by ali on 8/22/18.
  */
 
-public class StringRepo extends GRepo {
+public class StringDAO extends GRepo {
 
     public interface OnStringLoad {
         void onStringLoad(String string);
@@ -30,12 +30,12 @@ public class StringRepo extends GRepo {
      * @param context context
      * @param mode    one of GRepo.LOCAL , GRepo.CACHE , GRepo.EXTERNAL
      */
-    public StringRepo(Context context, Mode mode) {
+    public StringDAO(Context context, Mode mode) {
         super(context, mode);
         postFix = ".txt";
     }
 
-    public StringRepo(Context context, Mode mode, String postFix) {
+    public StringDAO(Context context, Mode mode, String postFix) {
         super(context, mode);
         this.postFix = postFix;
     }

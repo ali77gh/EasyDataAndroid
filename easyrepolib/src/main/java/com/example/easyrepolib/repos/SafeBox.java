@@ -24,7 +24,7 @@ import javax.crypto.SecretKey;
 public class SafeBox {
 
     private SecretKey secretKey;
-    private ByteRepo byteRepo;
+    private ByteDAO byteRepo;
 
     public SafeBox(Context context, String key) {
 
@@ -37,7 +37,7 @@ public class SafeBox {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        byteRepo = new ByteRepo(context, GRepo.Mode.LOCAL);
+        byteRepo = new ByteDAO(context, GRepo.Mode.LOCAL);
     }
 
     public void Save(String fileName, String sensitiveData) {

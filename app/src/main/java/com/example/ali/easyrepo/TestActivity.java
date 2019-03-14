@@ -13,8 +13,11 @@ import com.example.easyrepolib.repos.BitmapRepo;
 import com.example.easyrepolib.repos.ByteRepo;
 import com.example.easyrepolib.repos.StringRepo;
 import com.example.easyrepolib.security.DeviceKeyGenerator;
+import com.example.easyrepolib.sqlite.GenericDAO;
+import com.example.easyrepolib.sqlite.KeyValDb;
 
 import java.io.File;
+import java.util.List;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -29,11 +32,12 @@ public class TestActivity extends AppCompatActivity {
         image = findViewById(R.id.image);
 
         //run tests
-        BitmapTest();
+//        BitmapTest();
         StringTest();
         ByteTest();
         ObjectTest();
         KeyValDbTest();
+        GenericDAOTest();
     }
 
     private void BitmapTest() {
@@ -53,9 +57,6 @@ public class TestActivity extends AppCompatActivity {
                 });
             }
         });
-
-        log(DeviceKeyGenerator.Generate(this, "MySecret"));
-
     }
 
     private void ByteTest() {
@@ -172,6 +173,33 @@ public class TestActivity extends AppCompatActivity {
 
     private void KeyValDbTest() {
 
+
+    }
+
+    private void GenericDAOTest(){
+        GenericDAO db = new GenericDAO<User>(this,User.class,true);
+
+        db.Drop();
+
+        User u = new User();
+
+        u.age = 18;
+        u.name = "ali";
+        u.lName = "ghahremani";
+
+        db.Insert(u);
+        u.name = "hassan";
+        db.Insert(u);
+        db.Insert(u);
+
+        List<User> users = db.getAll();
+
+        List<User> alis = db.getWithCondition(new KeyValDb.Condition() {
+            @Override
+            public boolean IsConditionTrue(Object object) {
+                return  ((User) object).name.equals("ali");
+            }
+        });
 
     }
 

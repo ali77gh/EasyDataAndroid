@@ -1,31 +1,29 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
-INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
-INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
-INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
-INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
+ADDED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml:1:1-47
+INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml:1:1-47
+INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml:1:1-47
+INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml:1:1-47
+INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml:1:1-47
 	package
-		ADDED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:2:5-38
-		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
+		ADDED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml:1:11-44
+		INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
+		INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-		ADDED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:1-2:41
-		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-	xmlns:android
-		ADDED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml:1:11-69
+		INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
+		ADDED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml:1:1-47
+		INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
 uses-sdk
-INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
+INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
+INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
+INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
+INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-		ADDED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
+		INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
+		ADDED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
+		INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-		ADDED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
-		INJECTED from /home/ali/GitHub/EasyRepo/easyrepolib/src/main/AndroidManifest.xml
+		INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
+		ADDED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml
+		INJECTED from /home/ali/GitHub/EasyDataAndroid/easyrepolib/src/main/AndroidManifest.xml

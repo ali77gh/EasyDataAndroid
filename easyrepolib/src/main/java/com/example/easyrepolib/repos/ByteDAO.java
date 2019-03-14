@@ -16,7 +16,7 @@ import java.io.IOException;
  * Created by ali on 8/20/18.
  */
 
-public class ByteRepo extends GRepo {
+public class ByteDAO extends GRepo {
 
     public interface OnBytesLoad {
         void onBytesLoad(byte[] bytes);
@@ -26,7 +26,7 @@ public class ByteRepo extends GRepo {
      * @param context context
      * @param mode    one of GRepo.LOCAL , GRepo.CACHE , GRepo.EXTERNAL
      */
-    public ByteRepo(Context context, Mode mode) {
+    public ByteDAO(Context context, Mode mode) {
         super(context, mode);
         postFix=".bytes";
     }

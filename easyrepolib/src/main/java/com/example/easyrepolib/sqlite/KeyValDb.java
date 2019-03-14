@@ -1,4 +1,4 @@
-package com.example.easyrepolib;
+package com.example.easyrepolib.sqlite;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -91,7 +91,7 @@ public class KeyValDb {
         return validObjs;
     }
 
-    public List<Object> ReadWithCondision(Condition condition, Class<?> type) {
+    public List<Object> ReadWithCondition(Condition condition, Class<?> type) {
 
         List<Object> validObjs = new ArrayList<>();
         Cursor resultSet = DB.rawQuery("Select * from " + table + ";", null);

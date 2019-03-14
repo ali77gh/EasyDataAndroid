@@ -11,10 +11,10 @@ import com.google.gson.Gson;
  * Created by ali on 8/22/18.
  */
 
-public class ObjectRepo extends GRepo {
+public class ObjectDAO extends GRepo {
 
     private Gson _gson;
-    private StringRepo _stringRepo;
+    private StringDAO _stringRepo;
 
     public interface OnObjectLoad {
         void onObjectLoad(Object obj);
@@ -24,11 +24,11 @@ public class ObjectRepo extends GRepo {
      * @param context context
      * @param mode    one of GRepo.LOCAL , GRepo.CACHE , GRepo.EXTERNAL
      */
-    public ObjectRepo(Context context, Mode mode) {
+    public ObjectDAO(Context context, Mode mode) {
         super(context, mode);
         _gson = new Gson();
         postFix = ".json";
-        _stringRepo = new StringRepo(context, mode, postFix);
+        _stringRepo = new StringDAO(context, mode, postFix);
     }
 
     public Object Load(String filename, Class<?> type) {
