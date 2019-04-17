@@ -1,48 +1,22 @@
 # EasyDataAndroid
-an android lib that make Save , load , Remove easy for you on EXTERNAL,INTERNAL,CACHE dirs 
-for bitmap , string , byteArray , Object,...
+library for data Layer of your android app <br>
+focused on being easy to use
 
 # installation
-download [jar](https://github.com/ali77gh/EasyDataAndroid/releases/download/2.0.0/easydataandroid.jar) file <br>
 [install it in simple 3 steps](https://github.com/ali77gh/EasyDataAndroid/wiki/install)
-# How To Use
-for EXTERNAL mode add following permission to manifest.xml and also request for permission for api > 21
-~~~xml
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-~~~
-then:
-~~~java
-BitmapRepo bitmapRepo = new BitmapRepo(activity, GRepo.Mode.LOCAL);
-//modes -> LOCAL , EXTERNAL , CACHE
-//Save
-bitmapRepo.Save("fileName", myBitmap);
-        
- //Load
- if (bitmapRepo.CheckExist("fileName"))
-   myBitmap = bitmapRepo.Load("fileName");
-        
- //remove
- bitmapRepo.Remove("fileName");
-~~~
-for async use:
-~~~java
-//save
-bitmapRepo.SaveAsync("filename", mBitmap, activity, new onSaveCompleted() {
-           @Override
-           public void onSaveComplete() {
-               
-           }
-});
-//load
-bitmapRepo.LoadAsync("filename", TestActivity.this, new BitmapRepo.OnBitmapLoad() {
-           @Override
-           public void onBitmapLoad(Bitmap bitmap) {
-                  imageView.setImageBitmap(bitmap);//runing on ui thread
-           }
-});
-~~~
-see [wiki](https://github.com/ali77gh/EasyDataAndroid/wiki) for more samples
+
+# File tools
+this tools provide <b> Read , Write , Delete </b> for you with <b> Sync or Async </b> mode on <b>External,Internal,Cache<b> Storage <br>
+[BitmapDAO](https://github.com/ali77gh/EasyDataAndroid/wiki/BitmapDAO) save bitmap as .png file<br>
+[BytesDAO](https://github.com/ali77gh/EasyDataAndroid/wiki/ByteDAO) save byte array in file<br>
+[StringDAO](https://github.com/ali77gh/EasyDataAndroid/wiki/StringDAO) save string as .txt file <br>
+[ObjectDAO](https://github.com/ali77gh/EasyDataAndroid/wiki/ObjectDAO) save object as .json file (its usfull for export config,settings and...)<br>
+
+# database tools
+[GenericDAO](https://github.com/ali77gh/EasyDataAndroid/wiki/genericDAO) use sqlite in easy way <br>
+
+# safebox
+[Safe box](https://github.com/ali77gh/EasyDataAndroid/wiki/safebox) for saveing passwords and other sensitive data <br>
 
 # Who Use this?
 [UniTools android](https://github.com/unitools-apps/UniTools-android)
