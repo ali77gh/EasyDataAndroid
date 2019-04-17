@@ -9,11 +9,12 @@ import android.widget.TextView;
 
 import com.example.easyrepolib.abstracts.GRepo;
 import com.example.easyrepolib.abstracts.onSaveCompleted;
-import com.example.easyrepolib.repos.BitmapRepo;
-import com.example.easyrepolib.repos.ByteRepo;
-import com.example.easyrepolib.repos.StringRepo;
+import com.example.easyrepolib.repos.BitmapDAO;
+import com.example.easyrepolib.repos.ByteDAO;
+import com.example.easyrepolib.repos.ObjectDAO;
+import com.example.easyrepolib.repos.SafeBox;
+import com.example.easyrepolib.repos.StringDAO;
 import com.example.easyrepolib.security.DeviceKeyGenerator;
-import com.example.easyrepolib.sqlite.GenericDAO;
 import com.example.easyrepolib.sqlite.KeyValDb;
 
 import java.io.File;
@@ -36,20 +37,19 @@ public class TestActivity extends AppCompatActivity {
         StringTest();
         ByteTest();
         ObjectTest();
-        KeyValDbTest();
         GenericDAOTest();
     }
 
     private void BitmapTest() {
 
-        final BitmapRepo bitmapRepo = new BitmapRepo(this, GRepo.Mode.LOCAL);
+        final BitmapDAO bitmapDAO = new BitmapDAO(this, GRepo.Mode.LOCAL);
 
         Bitmap mBitmap = getBitmapForTest();
 
-        bitmapRepo.SaveAsync("filename", mBitmap, this, new onSaveCompleted() {
+        bitmapDAO.SaveAsync("filename", mBitmap, this, new onSaveCompleted() {
             @Override
             public void onSaveComplete() {
-                bitmapRepo.LoadAsync("filename", TestActivity.this, new BitmapRepo.OnBitmapLoad() {
+                bitmapDAO.LoadAsync("filename", TestActivity.this, new BitmapDAO.OnBitmapLoad() {
                     @Override
                     public void onBitmapLoad(final Bitmap bitmap) {
                         image.setImageBitmap(bitmap);
@@ -61,7 +61,7 @@ public class TestActivity extends AppCompatActivity {
 
     private void ByteTest() {
 
-        ByteRepo byteRepo = new ByteRepo(this, GRepo.Mode.LOCAL);
+        ByteDAO byteDAO = new ByteDAO(this, GRepo.Mode.LOCAL);
 
         byte[] bytes = new byte[4];
 
@@ -70,39 +70,39 @@ public class TestActivity extends AppCompatActivity {
         bytes[2] = 0;
         bytes[3] = 1;
 
-        if (byteRepo.CheckExist("test")) {
+        if (byteDAO.CheckExist("test")) {
             log("test is exist");
         } else {
             log("test is not exist ");
         }
 
         log("saving...");
-        byteRepo.Save("test", bytes);
+        byteDAO.Save("test", bytes);
         log("saved");
 
-        if (byteRepo.CheckExist("test")) {
+        if (byteDAO.CheckExist("test")) {
             log("test is exist");
         } else {
             log("test is not exist ");
         }
 
         log("loading...");
-        byte[] loadedBytes = byteRepo.Load("test");
+        byte[] loadedBytes = byteDAO.Load("test");
         log("loaded");
 
         log("READED:" + loadedBytes);
 
         log("bytes");
-        for (File file : byteRepo.GetAll()) {
+        for (File file : byteDAO.GetAll()) {
             log("--" + file.getName());
         }
 
 
         log("removing...");
-        byteRepo.Remove("test");
+        byteDAO.Remove("test");
         log("removed");
 
-        if (byteRepo.CheckExist("test")) {
+        if (byteDAO.CheckExist("test")) {
             log("test is exist");
         } else {
             log("test is not exist ");
@@ -114,49 +114,49 @@ public class TestActivity extends AppCompatActivity {
 
     private void StringTest() {
 
-        StringRepo stringRepo = new StringRepo(this, GRepo.Mode.LOCAL);
+        StringDAO stringDAO = new StringDAO(this, GRepo.Mode.LOCAL);
 
         String string = "write this file";
 
-        if (stringRepo.CheckExist("test")) {
+        if (stringDAO.CheckExist("test")) {
             log("test is exist");
         } else {
             log("test is not exist ");
         }
 
         log("saving...");
-        stringRepo.Save("test", string);
+        stringDAO.Save("test", string);
         log("saved");
 
-        if (stringRepo.CheckExist("test")) {
+        if (stringDAO.CheckExist("test")) {
             log("test is exist");
         } else {
             log("test is not exist ");
         }
 
         log("loading...");
-        String loadedString = stringRepo.Load("test");
+        String loadedString = stringDAO.Load("test");
         log("loaded");
 
         log("READED:" + loadedString);
 
         log("strings");
-        for (File file : stringRepo.GetAll()) {
+        for (File file : stringDAO.GetAll()) {
             log("--" + file.getName());
         }
 
-        stringRepo.RemoveAll();
+        stringDAO.RemoveAll();
 
         log("strings");
-        for (File file : stringRepo.GetAll()) {
+        for (File file : stringDAO.GetAll()) {
             log("--" + file.getName());
         }
 
         log("removing...");
-        stringRepo.Remove("test");
+        stringDAO.Remove("test");
         log("removed");
 
-        if (stringRepo.CheckExist("test")) {
+        if (stringDAO.CheckExist("test")) {
             log("test is exist");
         } else {
             log("test is not exist ");
@@ -167,17 +167,20 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void ObjectTest() {
-        StringRepo stringRepo = new StringRepo(this, GRepo.Mode.LOCAL);
+        ObjectDAO o = new ObjectDAO(this, GRepo.Mode.LOCAL);
 
-    }
+        User u = new User();
+        u.name = "ali";
 
-    private void KeyValDbTest() {
+        o.Save("user",u);
 
+        o.Load("user",User.class);
 
     }
 
     private void GenericDAOTest(){
-        GenericDAO db = new GenericDAO<User>(this,User.class,true);
+
+        UserDao db = new UserDao(this);
 
         db.Drop();
 
@@ -200,7 +203,15 @@ public class TestActivity extends AppCompatActivity {
                 return  ((User) object).name.equals("ali");
             }
         });
+    }
 
+    private void TestSafeBox(){
+        String key = DeviceKeyGenerator.Generate(this);
+        SafeBox safeBox = new SafeBox(this,key);
+
+        safeBox.Save("password","myPassword");
+
+        safeBox.Load("password");
     }
 
     private void log(String msg) {

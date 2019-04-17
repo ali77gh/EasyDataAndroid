@@ -12,10 +12,7 @@ public class GenericDAO<T extends Model> {
     private Class type;
 
     private boolean autoSetId;
-    /**
-     * @param context
-     * @param tableName create table if not exist
-     */
+
     public GenericDAO(Context context,Class type, String tableName,boolean autoSetId) {
         db = new KeyValDb(context,tableName);
         this.autoSetId = autoSetId;
@@ -67,9 +64,16 @@ public class GenericDAO<T extends Model> {
         db.Remove(id);
     }
 
+    /*
+    *
+    * */
     public void Drop(){
         for (T friend:getAll())
             Remove(friend.getId());
-        if (!IsEmpty()) new RuntimeException("remove all not works");
+        if (!IsEmpty()) throw new RuntimeException("remove all not works");
+    }
+
+    public void RemoveAll(){
+        Drop();
     }
 }
