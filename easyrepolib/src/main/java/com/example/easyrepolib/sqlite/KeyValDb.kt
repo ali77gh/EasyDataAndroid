@@ -1,142 +1,91 @@
-package com.example.easyrepolib.sqlite;
+package com.example.easyrepolib.sqlite
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
-import android.database.sqlite.SQLiteDatabase;
-
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static android.content.Context.MODE_PRIVATE;
+import android.content.ContentValues
+import android.content.Context
+import android.database.CursorIndexOutOfBoundsException
+import android.database.sqlite.SQLiteDatabase
+import android.util.Log
+import com.google.gson.Gson
+import java.util.*
 
 /**
  * Created by ali on 9/17/18.
  */
+class KeyValDb(context: Context, private var table: String="default") {
 
-public class KeyValDb {
+    //TODO remove me
+    private val db = context.openOrCreateDatabase("easydb", Context.MODE_PRIVATE, null)
+    private val gson: Gson = Gson()
 
-    //todo defind id as primary key
+    init { db.execSQL("CREATE TABLE IF NOT EXISTS $table(id VARCHAR,value VARCHAR);") }
 
-    private final SQLiteDatabase DB;
-    private final Gson gson;
-    private final String table;
-    private final String dateBaseName = "EasyRepoDataBase";
-
-    /**
-     * @param tableName create table if not exist
-     */
-    public KeyValDb(Context context, String tableName) {
-        DB = context.openOrCreateDatabase(dateBaseName, MODE_PRIVATE, null);
-        gson = new Gson();
-        this.table = tableName;
-        DB.execSQL(
-                "CREATE TABLE IF NOT EXISTS " +
-                        tableName + "(" +
-                        "id VARCHAR ," +
-                        "val VARCHAR" +
-                        ");"
-        );
+    fun add(id: String, obj: Any?) {
+        db.execSQL("INSERT INTO $table VALUES('$id','${gson.toJson(obj)}');")
     }
 
-    public void insert(String id, Object object) {
-
-        String strObj = gson.toJson(object);
-        DB.execSQL(
-                "INSERT INTO " + table + " VALUES('" + id + "','" + strObj + "');"
-        );
+    fun get(id: String, type: Class<*>?): Any {
+        val resultSet = db.rawQuery("Select * from $table where id='$id';", null)
+        resultSet.moveToFirst()
+        val strObj = resultSet.getString(1)
+        resultSet.close()
+        return gson.fromJson(strObj, type)
     }
 
-    public Object Read(String id, Class<?> type) {
-        Cursor resultSet = DB.rawQuery("Select * from " + table + " where id='" + id + "';", null);
-        resultSet.moveToFirst();
-        String strObj = resultSet.getString(1);
-        resultSet.close();
-        return gson.fromJson(strObj, type);
-    }
-
-    public boolean IsEmpty() {
-        Cursor resultSet = DB.rawQuery("Select * from " + table + ";", null);
-        resultSet.moveToFirst();
-        try {
-            resultSet.getString(1);
-            return false;
-        } catch (CursorIndexOutOfBoundsException e) {
-            return true;
+    val isEmpty: Boolean get() {
+        val resultSet = db.rawQuery("Select * from $table;", null)
+        resultSet.moveToFirst()
+        return try {
+            resultSet.getString(1)
+            false
+        } catch (e: CursorIndexOutOfBoundsException) {
+            true
         }
-
     }
 
-    public List<Object> ReadAllOfType(Class<?> type) {
-
-        List<Object> validObjs = new ArrayList<>();
-        Cursor resultSet = DB.rawQuery("Select * from " + table + ";", null);
-        resultSet.moveToFirst();
-        String strObj;
-        Object obj;
-        while (!resultSet.isAfterLast()) {
-            strObj = resultSet.getString(1);
+    fun readAllOfType(type: Class<*>?): List<Any> {
+        val validObjs: MutableList<Any> = ArrayList()
+        val resultSet = db.rawQuery("Select * from $table;", null)
+        resultSet.moveToFirst()
+        var strObj: String?
+        var obj: Any
+        while (!resultSet.isAfterLast) {
+            strObj = resultSet.getString(1)
             try {
-                obj = gson.fromJson(strObj, type);
-                validObjs.add(obj);
-            } catch (Exception e) {/*ignore*/}
-
-            resultSet.moveToNext();
+                obj = gson.fromJson(strObj, type)
+                validObjs.add(obj)
+            } catch (e: Exception) { /*ignore*/ }
+            resultSet.moveToNext()
         }
-
-        resultSet.close();
-        return validObjs;
+        resultSet.close()
+        return validObjs
     }
 
-    public List<Object> ReadWithCondition(Condition condition, Class<?> type) {
-
-        List<Object> validObjs = new ArrayList<>();
-        Cursor resultSet = DB.rawQuery("Select * from " + table + ";", null);
-        resultSet.moveToFirst();
-        while (!resultSet.isAfterLast()) {
-            String strObj = resultSet.getString(1);
-            Object obj;
-            try {
-                obj = gson.fromJson(strObj, type);
-            } catch (Exception e) {
-                resultSet.moveToNext();
-                continue;
+    fun readWithCondition(condition:(obj:Any) -> Boolean , type: Class<*>?): List<Any> {
+        val validObjs: MutableList<Any> = ArrayList()
+        val resultSet = db.rawQuery("Select * from $table;", null)
+        resultSet.moveToFirst()
+        while (!resultSet.isAfterLast) {
+            val strObj = resultSet.getString(1)
+            val obj: Any = try {
+                gson.fromJson(strObj, type)
+            } catch (e: Exception) {
+                resultSet.moveToNext()
+                continue
             }
-
-            if (condition.IsConditionTrue(obj)) {
-                validObjs.add(obj);
-            }
-            resultSet.moveToNext();
+            if (condition(obj)) validObjs.add(obj)
+            resultSet.moveToNext()
         }
-
-        resultSet.close();
-        return validObjs;
+        resultSet.close()
+        return validObjs
     }
 
-    public void Update(String id, Object object) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("val", gson.toJson(object));
-        DB.update(table, contentValues, "id = ? ", new String[]{id});
+    fun update(id: String, obj: Any?) {
+        val contentValues = ContentValues().apply {
+            put("value", gson.toJson(obj))
+        }
+        db.update(table, contentValues, "id = ? ", arrayOf(id))
     }
 
-    public void Remove(String... ids) {
-        DB.delete(table, "id = ? ", ids);
-    }
-
-    public void Drop() {
-        DB.execSQL("DROP TABLE IF EXISTS " + table);
-    }
-
-    public interface Condition {
-        /**
-         * this method effect on your performance make it fast
-         *
-         * @param object readed object
-         * @return true if your condition is true else return false
-         */
-        boolean IsConditionTrue(Object object);
-    }
+    fun remove(vararg ids: String?) = db.delete(table, "id = ? ", ids)
+    fun drop() = db.execSQL("DROP TABLE IF EXISTS $table")
 }

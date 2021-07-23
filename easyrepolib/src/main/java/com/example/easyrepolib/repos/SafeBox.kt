@@ -1,102 +1,36 @@
-package com.example.easyrepolib.repos;
+package com.example.easyrepolib.repos
 
-import android.content.Context;
-
-import com.example.easyrepolib.abstracts.GRepo;
-import com.example.easyrepolib.security.Encryption;
-
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.InvalidParameterSpecException;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
+import android.content.Context
+import com.example.easyrepolib.security.Encryption
+import com.example.easyrepolib.security.Encryption.generateKey
+import java.io.UnsupportedEncodingException
+import java.security.InvalidAlgorithmParameterException
+import java.security.InvalidKeyException
+import java.security.NoSuchAlgorithmException
+import java.security.spec.InvalidKeySpecException
+import java.security.spec.InvalidParameterSpecException
+import javax.crypto.BadPaddingException
+import javax.crypto.IllegalBlockSizeException
+import javax.crypto.NoSuchPaddingException
+import javax.crypto.SecretKey
 
 /**
  * Created by ali on 8/30/18.
  */
+class SafeBox(context: Context, key: String) {
 
-public class SafeBox {
+    private var secretKey: SecretKey = generateKey(key)
+    private val byteRepo: ByteDAO = ByteDAO(context, RootMode.LOCAL)
 
-    private SecretKey secretKey;
-    private ByteDAO byteRepo;
+    fun save(fileName: String, sensitiveData: String) =
+            byteRepo.save(
+                    fileName,
+                    Encryption.encrypt(sensitiveData, secretKey)
+            )
 
-    public SafeBox(Context context, String key) {
-
-        try {
-            secretKey = Encryption.generateKey(key);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-        byteRepo = new ByteDAO(context, GRepo.Mode.LOCAL);
-    }
-
-    public void Save(String fileName, String sensitiveData) {
-        try {
-            byte[] EnBytes = Encryption.Encrypt(sensitiveData, secretKey);
-            byteRepo.SaveAsync(fileName, EnBytes);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (InvalidParameterSpecException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String Load(String fileName) {
-        byte[] EnBytes = byteRepo.Load(fileName);
-
-        try {
-            return Encryption.Decrypt(EnBytes,secretKey);
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (InvalidParameterSpecException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (InvalidAlgorithmParameterException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
+    fun load(fileName: String) =
+            Encryption.decrypt(
+                    byteRepo.load(fileName),
+                    secretKey
+            )
 }

@@ -1,24 +1,18 @@
-package com.example.easyrepolib.security;
+package com.example.easyrepolib.security
 
-import android.content.Context;
-import android.provider.Settings.Secure;
+import android.content.Context
+import android.provider.Settings.Secure
 
 /**
  * Created by ali on 8/30/18.
  */
-
-public class DeviceKeyGenerator {
-
-    public static String Generate(Context context) {
-        return Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
-        //todo get device information and generate a 16 char key
+object DeviceKeyGenerator {
+    fun Generate(context: Context): String {
+        return Secure.getString(context.contentResolver, Secure.ANDROID_ID)
     }
-
     //recommended
-    public static String Generate(Context context, String secret) {
-
-        String id = Secure.getString(context.getContentResolver(), Secure.ANDROID_ID);
-        return id.substring(secret.length()) + secret;
-        //todo get device information and generate a 16 char key
+    fun Generate(context: Context, secret: String): String {
+        val id = Secure.getString(context.contentResolver, Secure.ANDROID_ID)
+        return id.substring(secret.length) + secret
     }
 }

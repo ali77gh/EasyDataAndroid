@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EasyDataAndroid.iml" filepath="$PROJECT_DIR$/EasyDataAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/easyrepolib/easyrepolib.iml" filepath="$PROJECT_DIR$/easyrepolib/easyrepolib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/EasyDataAndroid.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/EasyDataAndroid.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/easyrepolib/EasyDataAndroid.easyrepolib.iml" filepath="$PROJECT_DIR$/.idea/modules/easyrepolib/EasyDataAndroid.easyrepolib.iml" />
     </modules>
   </component>
 </project>

@@ -1,79 +1,35 @@
-package com.example.easyrepolib.sqlite;
+package com.example.easyrepolib.sqlite
 
-import android.content.Context;
+import android.content.Context
+import java.util.*
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-public class GenericDAO<T extends Model> {
-
-    private KeyValDb db;
-    private Class type;
-
-    private boolean autoSetId;
-
-    public GenericDAO(Context context,Class type, String tableName,boolean autoSetId) {
-        db = new KeyValDb(context,tableName);
-        this.autoSetId = autoSetId;
-        this.type = type;
-    }
-
-    public GenericDAO(Context context,Class type,boolean autoSetId) {
-        db = new KeyValDb(context,type.getSimpleName());
-        this.autoSetId = autoSetId;
-        this.type = type;
-    }
+abstract class EasyTable<T : Model?>(
+    context: Context,
+    private val type: Class<*>,
+    tableName: String = type.simpleName,
+    private var autoSetId: Boolean=false
+){
+    private var db = KeyValDb(context,tableName)
 
     //Read
+    val all: List<T> get() = db.readAllOfType(type) as List<T>
 
-    public List<T> getAll() {
-        ArrayList<T> list = new ArrayList<>();
-        for (Object o : db.ReadAllOfType(type))
-            list.add((T) o);
-        return (list);
+    fun getById(id: String) = db.get(id, type) as T
+
+    fun getWithCondition(condition:(obj:T) -> Boolean) =
+            db.readWithCondition(condition as ((obj:Any)->Boolean), type) as List<T>
+
+    val isEmpty: Boolean get() = db.isEmpty
+
+    // Write
+    fun insert(newRow: T) {
+        if (autoSetId) newRow!!.id = UUID.randomUUID().toString()
+        db.add(newRow!!.id, newRow)
     }
 
-    public T getById(String id) {
-        return (T) db.Read(id, type);
-    }
+    fun update(obj: T) = db.update(obj!!.id, obj)
 
-    public List<T> getWithCondition(KeyValDb.Condition condition){
-        ArrayList<T> list = new ArrayList<>();
-        for (Object o : db.ReadWithCondition(condition,type))
-            list.add((T) o);
-        return (list);
-    }
+    fun delete(id: String) = db.remove(id)
 
-    public boolean IsEmpty() {
-        return db.IsEmpty();
-    }
-
-    //Write
-    public void Insert(T newRow) {
-        if (autoSetId)
-            newRow.setId(UUID.randomUUID().toString());
-        db.insert(newRow.getId(), newRow);
-    }
-
-    public void Update(T friend) {
-        db.Update(friend.getId(), friend);
-    }
-
-    public void Remove(String id) {
-        db.Remove(id);
-    }
-
-    /*
-    *
-    * */
-    public void Drop(){
-        for (T friend:getAll())
-            Remove(friend.getId());
-        if (!IsEmpty()) throw new RuntimeException("remove all not works");
-    }
-
-    public void RemoveAll(){
-        Drop();
-    }
+    fun drop() = db.drop()
 }

@@ -1,224 +1,172 @@
-package com.example.ali.easyrepo;
+package com.example.ali.easyrepo
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.app.Activity
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
+import com.example.easyrepolib.repos.*
+import com.example.easyrepolib.security.DeviceKeyGenerator.Generate
 
-import com.example.easyrepolib.abstracts.GRepo;
-import com.example.easyrepolib.abstracts.onSaveCompleted;
-import com.example.easyrepolib.repos.BitmapDAO;
-import com.example.easyrepolib.repos.ByteDAO;
-import com.example.easyrepolib.repos.ObjectDAO;
-import com.example.easyrepolib.repos.SafeBox;
-import com.example.easyrepolib.repos.StringDAO;
-import com.example.easyrepolib.security.DeviceKeyGenerator;
-import com.example.easyrepolib.sqlite.KeyValDb;
+class TestActivity : Activity() {
+    private var log: TextView? = null
+    private var image: ImageView? = null
 
-import java.io.File;
-import java.util.List;
+    // Tools
+    private val bitmapForTest: Bitmap
+        get() = BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
+    private fun log(msg: String){
+        Log.d("test",msg)
+        log!!.append("$msg\n")
+    }
+    private fun logTitle(title:String) = log("\n----- $title -----")
+    private fun test(name:String,bool:Boolean) = log(name+"\t\t\t" + if (bool) " passed!" else " failed! ")
+    private fun test(name:String,a:Any,b:Any) = test(name,a==b)
 
-public class TestActivity extends AppCompatActivity {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_test)
+        log = findViewById(R.id.logger)
+        image = findViewById(R.id.image)
 
-    private TextView log;
-    private ImageView image;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
-        log = findViewById(R.id.loger);
-        image = findViewById(R.id.image);
-
-        //run tests
-//        BitmapTest();
-        StringTest();
-        ByteTest();
-        ObjectTest();
-        GenericDAOTest();
+//        bitmapTest()
+        byteTest()
+        stringTest()
+        objectTest()
+        genericDAOTest()
+        testSafeBox()
     }
 
-    private void BitmapTest() {
+    private fun bitmapTest() {
+        logTitle("bitmap test")
 
-        final BitmapDAO bitmapDAO = new BitmapDAO(this, GRepo.Mode.LOCAL);
+        val bitmapDAO = BitmapDAO(this, RootMode.LOCAL)
 
-        Bitmap mBitmap = getBitmapForTest();
+        // Sync
+        bitmapDAO.save("testBitmap.bmp",bitmapForTest,100)
+        test("testBitmap.bmp",bitmapDAO.checkExist("testBitmap.bmp"))
 
-        bitmapDAO.SaveAsync("filename", mBitmap, this, new onSaveCompleted() {
-            @Override
-            public void onSaveComplete() {
-                bitmapDAO.LoadAsync("filename", TestActivity.this, new BitmapDAO.OnBitmapLoad() {
-                    @Override
-                    public void onBitmapLoad(final Bitmap bitmap) {
-                        image.setImageBitmap(bitmap);
-                    }
-                });
-            }
-        });
+        bitmapDAO.save("testBitmap50.bmp",bitmapForTest,50)
+        test("testBitmap50.bmp",bitmapDAO.checkExist("testBitmap50.bmp"))
+
+        bitmapDAO.save("testBitmap10px.bmp",bitmapForTest, width=10, height=10)
+        test("testBitmap10px.bmp",bitmapDAO.checkExist("testBitmap10px.bmp"))
+
+        // Async
+        bitmapDAO.saveAsync("testBitmapAsync.bmp", bitmapForTest, callback = {
+            test("testBitmapAsync.bmp",bitmapDAO.checkExist("testBitmapAsync.bmp"))
+        })
+        Thread.sleep(1000)
+        log("bitmap tests all done!")
     }
 
-    private void ByteTest() {
+    private fun byteTest() {
 
-        ByteDAO byteDAO = new ByteDAO(this, GRepo.Mode.LOCAL);
+        logTitle("byte test")
 
-        byte[] bytes = new byte[4];
+        val byteDAO = ByteDAO(this, RootMode.LOCAL)
+        val bytes = ByteArray(4)
+        bytes[0] = 1
+        bytes[1] = 1
+        bytes[2] = 0
+        bytes[3] = 1
 
-        bytes[0] = 1;
-        bytes[1] = 1;
-        bytes[2] = 0;
-        bytes[3] = 1;
+        // saving
+        byteDAO.save("test", bytes)
+        test("saving",byteDAO.checkExist("test"))
 
-        if (byteDAO.CheckExist("test")) {
-            log("test is exist");
-        } else {
-            log("test is not exist ");
-        }
+        // loading
+        val loadedBytes: ByteArray = byteDAO.load("test")!!
+        test("byte eq:",loadedBytes[0],bytes[0])
 
-        log("saving...");
-        byteDAO.Save("test", bytes);
-        log("saved");
-
-        if (byteDAO.CheckExist("test")) {
-            log("test is exist");
-        } else {
-            log("test is not exist ");
-        }
-
-        log("loading...");
-        byte[] loadedBytes = byteDAO.Load("test");
-        log("loaded");
-
-        log("READED:" + loadedBytes);
-
-        log("bytes");
-        for (File file : byteDAO.GetAll()) {
-            log("--" + file.getName());
-        }
-
-
-        log("removing...");
-        byteDAO.Remove("test");
-        log("removed");
-
-        if (byteDAO.CheckExist("test")) {
-            log("test is exist");
-        } else {
-            log("test is not exist ");
-        }
-
-        log("------------string test done-----------");
-
+        // removing
+        byteDAO.remove("test")
+        test("removing",!byteDAO.checkExist("test"))
     }
 
-    private void StringTest() {
+    private fun stringTest() {
 
-        StringDAO stringDAO = new StringDAO(this, GRepo.Mode.LOCAL);
+        logTitle("string test")
 
-        String string = "write this file";
+        val stringDAO = StringDAO(this, RootMode.LOCAL)
+        val string = "write this file"
 
-        if (stringDAO.CheckExist("test")) {
-            log("test is exist");
-        } else {
-            log("test is not exist ");
-        }
+        //saving
+        stringDAO.save("test", string)
+        test("saving",stringDAO.checkExist("test"))
 
-        log("saving...");
-        stringDAO.Save("test", string);
-        log("saved");
+        // loading
+        val loadedString: String = stringDAO.load("test")
+        test("byte eq:",loadedString,string)
 
-        if (stringDAO.CheckExist("test")) {
-            log("test is exist");
-        } else {
-            log("test is not exist ");
-        }
+        // removing
+        stringDAO.remove("test")
+        test("removing",!stringDAO.checkExist("test"))
 
-        log("loading...");
-        String loadedString = stringDAO.Load("test");
-        log("loaded");
-
-        log("READED:" + loadedString);
-
-        log("strings");
-        for (File file : stringDAO.GetAll()) {
-            log("--" + file.getName());
-        }
-
-        stringDAO.RemoveAll();
-
-        log("strings");
-        for (File file : stringDAO.GetAll()) {
-            log("--" + file.getName());
-        }
-
-        log("removing...");
-        stringDAO.Remove("test");
-        log("removed");
-
-        if (stringDAO.CheckExist("test")) {
-            log("test is exist");
-        } else {
-            log("test is not exist ");
-        }
-
-        log("------------string test done-----------");
-
+        // default
+        test("default",stringDAO.load("test","def"),"def")
     }
 
-    private void ObjectTest() {
-        ObjectDAO o = new ObjectDAO(this, GRepo.Mode.LOCAL);
+    private fun objectTest() {
 
-        User u = new User();
-        u.name = "ali";
+        logTitle("object test")
 
-        o.Save("user",u);
+        val dao = ObjectDAO(this, RootMode.LOCAL)
+        val user = User("id","pass","ali",18,"admin",1000)
 
-        o.Load("user",User.class);
+        dao.save("test", user)
+        test("saving",dao.checkExist("test"))
 
+        // loading
+        val loaded: User = dao.load("test",User::class.java) as User
+        test("equality:",loaded.name,user.name)
+
+        // removing
+        dao.remove("test")
+        test("removing",!dao.checkExist("test"))
     }
 
-    private void GenericDAOTest(){
+    private fun genericDAOTest() {
 
-        UserDao db = new UserDao(this);
+        logTitle("generic test")
 
-        db.Drop();
+        val users = User.getRepo(this)
 
-        User u = new User();
+        val u = User("id","pass","ali",18,"admin",1000)
 
-        u.age = 18;
-        u.name = "ali";
-        u.lName = "ghahremani";
+        //insert
+        users.insert(u)
 
-        db.Insert(u);
-        u.name = "hassan";
-        db.Insert(u);
-        db.Insert(u);
+        test("insert",users.getById("id").name,"ali")
 
-        List<User> users = db.getAll();
+        //read
+        test("read",users.all.size,1)
 
-        List<User> alis = db.getWithCondition(new KeyValDb.Condition() {
-            @Override
-            public boolean IsConditionTrue(Object object) {
-                return  ((User) object).name.equals("ali");
-            }
-        });
+        //update
+        u.name = "hasan"
+        users.update(u)
+        test("update",users.getById(u.id).name,"hasan")
+
+        //delete
+        users.delete(u.id)
+        test("delete",users.all.size,0)
+
+        users.drop()
     }
 
-    private void TestSafeBox(){
-        String key = DeviceKeyGenerator.Generate(this);
-        SafeBox safeBox = new SafeBox(this,key);
+    private fun testSafeBox() {
+        logTitle("safebox test")
+        val key = Generate(this)
+        val safeBox = SafeBox(this, key)
 
-        safeBox.Save("password","myPassword");
+        safeBox.save("password", "myPassword")
+        var readed = safeBox.load("password")
+        test("read eq",readed=="myPassword")
 
-        safeBox.Load("password");
-    }
-
-    private void log(String msg) {
-        log.append(msg + "\n");
-    }
-
-    private Bitmap getBitmapForTest() {
-        return BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+        safeBox.save("password", "سلام")
+        readed = safeBox.load("password")
+        test("utf8",readed=="سلام")
     }
 }

@@ -1,6 +1,5 @@
-package com.example.easyrepolib.sqlite;
+package com.example.easyrepolib.sqlite
 
-public interface Model {
-    String getId();
-    void setId(String id);
+interface Model {
+    var id: String
 }
