@@ -3,28 +3,27 @@ package com.example.easyrepolib.sqlite
 import android.content.ContentValues
 import android.content.Context
 import android.database.CursorIndexOutOfBoundsException
-import android.database.sqlite.SQLiteDatabase
-import android.util.Log
 import com.google.gson.Gson
 import java.util.*
 
 /**
  * Created by ali on 9/17/18.
  */
-class KeyValDb(context: Context, private var table: String="default") {
+open class KeyValDb(context: Context, private var table: String="default") {
 
-    //TODO remove me
     private val db = context.openOrCreateDatabase("easydb", Context.MODE_PRIVATE, null)
-    private val gson: Gson = Gson()
+    val gson: Gson = Gson()
 
-    init { db.execSQL("CREATE TABLE IF NOT EXISTS $table(id VARCHAR,value VARCHAR);") }
-
-    fun add(id: String, obj: Any?) {
-        db.execSQL("INSERT INTO $table VALUES('$id','${gson.toJson(obj)}');")
+    init {
+        db.execSQL("CREATE TABLE IF NOT EXISTS $table(id VARCHAR PRIMARY KEY,value VARCHAR);")
     }
 
+    fun add(id: String, obj: Any?)
+      = db.execSQL("INSERT INTO $table VALUES('$id','${gson.toJson(obj)}');")
+
+
     fun get(id: String, type: Class<*>?): Any {
-        val resultSet = db.rawQuery("Select * from $table where id='$id';", null)
+        val resultSet = db.rawQuery("Select * from $table where id='$id' limit 1;", null)
         resultSet.moveToFirst()
         val strObj = resultSet.getString(1)
         resultSet.close()
@@ -79,13 +78,35 @@ class KeyValDb(context: Context, private var table: String="default") {
         return validObjs
     }
 
-    fun update(id: String, obj: Any?) {
+
+    fun update(id: String, obj: Any) {
         val contentValues = ContentValues().apply {
             put("value", gson.toJson(obj))
         }
         db.update(table, contentValues, "id = ? ", arrayOf(id))
     }
 
-    fun remove(vararg ids: String?) = db.delete(table, "id = ? ", ids)
+
+    fun delete(id: String) = db.delete(table, "id = ? ", arrayOf(id))
+
+    fun deleteMany(ids: Array<String>) = ids.forEach { delete(it) }
+
     fun drop() = db.execSQL("DROP TABLE IF EXISTS $table")
+
+
+    // Iterable APIs
+    private var resultSet = db.rawQuery("Select * from $table;", null)!!
+
+    fun reset() {
+        resultSet = db.rawQuery("Select * from $table;", null)!!
+        resultSet.moveToFirst()
+    }
+
+    fun hasNext(): Boolean = !resultSet.isLast and !resultSet.isAfterLast
+
+    fun next(): String {
+        val str = resultSet.getString(1)
+        resultSet.moveToNext()
+        return str
+    }
 }
