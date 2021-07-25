@@ -1,5 +1,7 @@
 package com.example.easyrepolib.security
 
+import android.util.Log
+import java.lang.RuntimeException
 import javax.crypto.*
 import javax.crypto.spec.SecretKeySpec
 
@@ -10,8 +12,16 @@ object Encryption {
 
     //key should be 16 or 32 bytes
     fun generateKey(key: String): SecretKey {
-        if (key.length != 16 && key.length != 32) throw RuntimeException("key length should be 16 or 32 characters")
-        return SecretKeySpec(key.toByteArray(), "AES")
+        Log.d("key","$key : ${key.length}")
+        return when(key.length){
+            0->throw RuntimeException("empty key")
+            32 -> SecretKeySpec(key.toByteArray(), "AES")
+            in 1..32 -> generateKey(key + key)
+            else ->{
+                // more then 32
+                generateKey(key.substring(0,32))
+            }
+        }
     }
 
     fun encrypt(message: String, secret: SecretKey): ByteArray {
