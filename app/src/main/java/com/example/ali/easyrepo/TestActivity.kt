@@ -9,6 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.easyrepolib.repos.*
 import com.example.easyrepolib.security.DeviceKeyGenerator.Generate
+import com.google.gson.Gson
+import java.util.*
+import kotlin.system.measureTimeMillis
 
 class TestActivity : Activity() {
     private var log: TextView? = null
@@ -24,6 +27,7 @@ class TestActivity : Activity() {
     private fun logTitle(title:String) = log("\n----- $title -----")
     private fun test(name:String,bool:Boolean) = log(name+"\t\t\t" + if (bool) " passed!" else " failed! ")
     private fun test(name:String,a:Any,b:Any) = test(name,a==b)
+    fun logUI(msg:String)=runOnUiThread { log(msg) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +36,13 @@ class TestActivity : Activity() {
         image = findViewById(R.id.image)
 
 //        bitmapTest()
-        byteTest()
-        stringTest()
-        objectTest()
-        genericDAOTest()
-        testSafeBox()
+//        byteTest()
+//        stringTest()
+//        objectTest()
+//        genericDAOTest()
+//        genericDAOTestHeavy()
+//        testSafeBox()
+        performanceTest()
     }
 
     private fun bitmapTest() {
@@ -131,29 +137,156 @@ class TestActivity : Activity() {
     private fun genericDAOTest() {
 
         logTitle("generic test")
-
         val users = User.getRepo(this)
+        val g = Gson()
 
-        val u = User("id","pass","ali",18,"admin",1000)
+        log("---before delete---")
+        for(user in users)
+            log(user.name)
+
+        users.deleteWhere { true }
+
+        log("---after delete---")
+        for(user in users)
+            log(user.name)
 
         //insert
+        val u = User(UUID.randomUUID().toString(),"pass","ali",18,"admin",1000)
         users.insert(u)
 
-        test("insert",users.getById("id").name,"ali")
+        log("---after insert---")
+        for(user in users)
+            log(user.id)
+
+        test("insert",users.getById(u.id)!!.name,"ali")
 
         //read
-        test("read",users.all.size,1)
+        test("read",users.toList().size,1)
 
         //update
         u.name = "hasan"
         users.update(u)
-        test("update",users.getById(u.id).name,"hasan")
+        test("update",users.getById(u.id)!!.name,"hasan")
 
         //delete
-        users.delete(u.id)
-        test("delete",users.all.size,0)
+        users.deleteWhere { it.id==u.id }
+        test("delete",users.toList().size,0)
 
-        users.drop()
+    }
+
+    private fun genericDAOTestHeavy() {
+
+        logTitle("generic test heavy")
+
+        val users = User.getRepo(this)
+        users.deleteWhere { true }
+
+        log("---after delete all")
+        for(user in users)
+            log(user.id)
+
+        users.filter { true }
+
+        //insert
+        users.insert(User(UUID.randomUUID().toString(),"pass","ali",18,"admin",1000))
+        users.insert(User(UUID.randomUUID().toString(),"pass","ali",18,"admin",1000))
+        users.insert(User(UUID.randomUUID().toString(),"pass","ali",18,"admin",1000))
+        users.insert(User(UUID.randomUUID().toString(),"pass","ali",18,"admin",1000))
+
+        log("---after 4 inserts---")
+        for(user in users)
+            log(user.id)
+
+        log("---filter---")
+        for(user in users.filter { it.id.contains("e") })
+            log(user.id)
+
+        log(users.sumBy { it.age }.toString())
+    }
+
+    private fun performanceTest(){
+
+        logTitle("performance")
+
+        Thread{
+            val users = User.getRepo(this)
+
+            logUI("users size: ${users.toList().size}")
+
+            val L = 10000
+            val g = Gson()
+            val serializeTime = measureTimeMillis {
+                for(i in 0..L){
+                    val user = User(UUID.randomUUID().toString(),"pass","ali",18,"admin",1000)
+                    g.toJson(user)
+                }
+            }
+            logUI("serializeTime: $serializeTime")
+            val user = User(UUID.randomUUID().toString(),"pass","ali",18,"admin",1000)
+            val str = g.toJson(user)
+            val deserializeTime = measureTimeMillis {
+                for(i in 0..L){
+                    g.fromJson<User>(str,User::class.java)
+                }
+            }
+            logUI("deserializeTime: $deserializeTime")
+
+            val r = Random()
+            val insertTime = measureTimeMillis {
+                 for(i in 0..L)
+                     users.insert(User(UUID.randomUUID().toString(),"pass","ali",18,"admin",1000))
+            }
+            logUI("users size: ${users.toList().size}")
+            logUI(" insert:                    $insertTime ms")
+
+            val lastId = users.toList().last().id
+            val getById = measureTimeMillis {
+                users.getById(lastId)
+            }
+            logUI(" getById:               $getById ms")
+
+            val getWithFalsyFilter = measureTimeMillis {
+                users.filter { false }
+            }
+            logUI(" getWithFalsyFilter:               $getWithFalsyFilter ms")
+
+            val readAllTime = measureTimeMillis {
+                users.toList()
+            }
+            logUI(" readAllTime:               $readAllTime ms")
+
+            val readWithFilterTime = measureTimeMillis {
+                users.filter { it.name=="ali" }
+            }
+            logUI(" readWithFilterTime:        $readWithFilterTime ms")
+            val readWithFilterAndMapTime = measureTimeMillis {
+                users.filter { it.name=="ali" }.map { it.role }
+            }
+            logUI(" readWithFilterAndMapTime:  $readWithFilterAndMapTime ms")
+            val readWithMapAndFilterTime = measureTimeMillis {
+                users.map { it.name }.filter { it=="ali" }
+            }
+            logUI(" readWithMapAndFilterTime:  $readWithMapAndFilterTime ms")
+            val updateAll = measureTimeMillis {
+                users.updateWhere({it.name=="ali"},{it.apply { it.age=23 }})
+            }
+            logUI(" updateAll:                 $updateAll ms")
+
+            val updateOne = measureTimeMillis {
+                users.updateWhere({it.id==lastId},{it.apply { it.age=25 }})
+            }
+            logUI(" updateOne:                 $updateOne ms")
+
+            val removeOne = measureTimeMillis {
+                users.deleteWhere { it.id==lastId }
+            }
+            logUI(" removeOne:                 $removeOne ms")
+
+            val removeAll = measureTimeMillis {
+                users.deleteWhere { true }
+            }
+            logUI(" removeAll:                 $removeAll ms")
+        }.start()
     }
 
     private fun testSafeBox() {
