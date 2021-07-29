@@ -3,9 +3,7 @@ package com.example.easyrepolib.sqlite
 import android.content.ContentValues
 import android.content.Context
 import android.database.CursorIndexOutOfBoundsException
-import android.util.Log
 import com.google.gson.Gson
-import java.util.*
 import kotlin.collections.ArrayList
 
 /**
@@ -76,18 +74,21 @@ open class KeyValDb(
 
 
     // Iterable APIs
-    private var resultSet = db.rawQuery("Select value from $table;", null)!!
 
-    protected fun reset() {
-        resultSet = db.rawQuery("Select value from $table;", null)!!
+    protected fun innerIterator() :Iterator<String>{
+        val resultSet = db.rawQuery("Select value from $table;", null)!!
         resultSet.moveToFirst()
+        return object : Iterator<String> {
+            override fun hasNext(): Boolean {
+                return !resultSet.isAfterLast
+            }
+
+            override fun next(): String {
+                val str = resultSet.getString(0)
+                resultSet.moveToNext()
+                return str
+            }
+        }
     }
 
-    protected fun hasNext(): Boolean = !resultSet.isAfterLast
-
-    protected fun next(): String {
-        val str = resultSet.getString(0)
-        resultSet.moveToNext()
-        return str
-    }
 }
