@@ -38,9 +38,9 @@ abstract class EasyTable<T : Model>(
     //Read
     open fun toList(): ArrayList<T> {
         val list = ArrayList<T>()
-        val iterator = this@EasyTable.iterator()
-        while (iterator.hasNext())
-            list.add(iterator.next())
+        reset()
+        while (itr.hasNext())
+            list.add(itr.next())
         return list
     }
 
@@ -63,19 +63,21 @@ abstract class EasyTable<T : Model>(
         return null
     }
 
+    private val itr = object : Iterator<T> {
+        override fun hasNext(): Boolean {
+            return this@EasyTable.hasNext()
+        }
+
+        override fun next(): T {
+            return gson.fromJson(
+                    this@EasyTable.next(),
+                    this@EasyTable.type
+            ) as T
+        }
+    }
+
     override fun iterator(): Iterator<T> {
         reset()
-        return object : Iterator<T> {
-            override fun hasNext(): Boolean {
-                return this@EasyTable.hasNext()
-            }
-
-            override fun next(): T {
-                return gson.fromJson(
-                        this@EasyTable.next(),
-                        this@EasyTable.type
-                ) as T
-            }
-        }
+        return itr
     }
 }
