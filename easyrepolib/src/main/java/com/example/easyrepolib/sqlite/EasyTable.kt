@@ -2,45 +2,68 @@ package com.example.easyrepolib.sqlite
 
 import android.content.Context
 import java.util.*
+import kotlin.collections.ArrayList
 
-abstract class EasyTable<T : Model?>(
+abstract class EasyTable<T : Model>(
         context: Context,
-        private val type: Class<*>,
+        private val type: Class<T>,
         tableName: String = type.simpleName,
-        private var autoSetId: Boolean=false
+        private var autoSetId: Boolean = false
 ) : KeyValDb(context,tableName) , Iterable<T>{
 
     // Insert
-    fun insert(row: T) {
-        if (autoSetId) row!!.id = UUID.randomUUID().toString()
-        add(row!!.id, row)
+    open fun insert(row: T) {
+        if (autoSetId) row.id = UUID.randomUUID().toString()
+        add(row.id, row)
     }
 
-    fun insertMany(rows:Iterable<T>) = rows.forEach { insert(it) }
+    open fun insertMany(rows:Iterable<T>) = rows.forEach { insert(it) }
 
     // Update
-    fun update(row: T) = super.update(row!!.id, row)
+    open fun update(row: T) = super.update(row.id, row)
 
-    fun updateMany(rows: Iterable<T>) = rows.forEach { update(it!!.id, it) }
+    open fun updateMany(rows: Iterable<T>) = rows.forEach { update(it.id, it) }
 
-    inline fun updateAll(change:(row:T)->T) = updateMany(map(change))
+    open fun updateAll(change:(row:T)->T) = updateMany(map(change))
 
-    inline fun updateWhere(condition: (obj: T) -> Boolean, change:(row:T)->T)
+    open fun updateWhere(condition: (obj: T) -> Boolean, change:(row:T)->T)
             = updateMany(filter(condition).map(change))
 
 
     //Delete
-    inline fun deleteWhere(condition: (obj: T) -> Boolean)
-            = deleteMany(filter(condition).map { it!!.id }.toTypedArray())
+    open fun deleteWhere(condition: (obj: T) -> Boolean)
+            = deleteMany(filter(condition).map { it.id }.toTypedArray())
 
 
     //Read
-    val all: List<T> get() = readAllOfType(type) as List<T>
+    open fun toList(): ArrayList<T> {
+        val list = ArrayList<T>()
+        val iterator = this@EasyTable.iterator()
+        while (iterator.hasNext())
+            list.add(iterator.next())
+        return list
+    }
 
-    fun getById(id: String) = get(id, type) as T
+    /**
+     * @return null if not found
+     */
+    open fun getById(id: String) = gson.fromJson<T>(super.getByIdStr(id),type)
+
+    /**
+     *  this is faster then filter { it.id = ids.contains() }
+     */
+    open fun getByIds(id: List<String>) = super.getByIdsStr(id).map { gson.fromJson(it,type) }
+
+    /**
+     * @return null if not found
+     */
+    open fun getOne(condition: (obj: T) -> Boolean):T?{
+        for(row in this)
+            if (condition(row)) return row
+        return null
+    }
 
     override fun iterator(): Iterator<T> {
-
         reset()
         return object : Iterator<T> {
             override fun hasNext(): Boolean {
