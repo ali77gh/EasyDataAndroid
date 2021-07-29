@@ -1,6 +1,7 @@
 package com.example.ali.easyrepo
 
 import android.content.Context
+import com.example.easyrepolib.IORun
 import com.example.easyrepolib.sqlite.EasyTable
 import com.example.easyrepolib.sqlite.Model
 
@@ -50,6 +51,9 @@ class User(
 
         fun increaseRoleOfAlis() = updateWhere({it.name=="ali"},{it.role="admin";it})
 
+        fun asyncGetByName(name:String,cb:(user:User)->Unit){
+            IORun( {filter { it.name==name }[0]} , cb )
+        }
     }
 
     // repo singleton
