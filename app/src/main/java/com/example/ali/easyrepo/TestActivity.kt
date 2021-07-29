@@ -42,7 +42,8 @@ class TestActivity : Activity() {
 //        genericDAOTest()
 //        genericDAOTestHeavy()
 //        testSafeBox()
-        performanceTest()
+//        performanceTest()
+        testSettings()
     }
 
     private fun bitmapTest() {
@@ -301,5 +302,20 @@ class TestActivity : Activity() {
         safeBox.save("password", "سلام")
         readed = safeBox.load("password")
         test("utf8",readed=="سلام")
+    }
+
+    private fun testSettings(){
+        logTitle("settings test")
+        val now = Date().time
+
+        Settings.get(this).theme = "dark"
+        Settings.get(this).dateSystem =  Settings.DateSystem.Gregorian
+        Settings.get(this).notification = true
+        Settings.get(this).lastLogin = now
+
+        test("theme",Settings.get(this).theme, "dark")
+        test("dateSystem",Settings.get(this).dateSystem, Settings.DateSystem.Gregorian)
+        test("notif",Settings.get(this).notification, true)
+        test("lastLogin",Settings.get(this).lastLogin, now)
     }
 }
