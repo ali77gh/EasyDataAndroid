@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.ali.easyrepo.TestActivity">
+    tools:context="com.ali77gh.easydataexample.TestActivity">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -1,1 +1,1 @@
-include ':app', ':easyrepolib'
+include ':app', ':easydata'
