@@ -88,3 +88,17 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+
+
+# added by ali:
+.settings/
+.project
+app/.classpath
+app/.project
+app/.settings/
+easydata/.classpath
+easydata/.project
+easydata/.settings/
+easyrepolib/libs/jars/mylib.jar
+.idea/
+.README.md.swp

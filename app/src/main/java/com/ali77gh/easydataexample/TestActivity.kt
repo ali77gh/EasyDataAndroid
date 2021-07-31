@@ -7,9 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
-import com.ali77gh.easydataexample.easyrepo.R
+import com.ali77gh.easydataexample.R
 import com.ali77gh.easydata.repos.*
-import com.ali77gh.easydata.security.DeviceKeyGenerator.Generate
+import com.ali77gh.easydata.security.DeviceKeyGenerator
 import com.google.gson.Gson
 import java.util.*
 import kotlin.system.measureTimeMillis
@@ -293,7 +293,7 @@ class TestActivity : Activity() {
 
     private fun testSafeBox() {
         logTitle("safebox test")
-        val key = Generate(this)
+        val key = DeviceKeyGenerator.Generate(this)
         val safeBox = SafeBox(this, key)
 
         safeBox.save("password", "myPassword")
