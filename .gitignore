@@ -102,3 +102,4 @@ easydata/.settings/
 easyrepolib/libs/jars/mylib.jar
 .idea/
 .README.md.swp
+gradle.properties
